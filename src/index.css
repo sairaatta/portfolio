@@ -1,0 +1,114 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 260 15% 11%;
+    --foreground: 0 0% 98%;
+
+    --card: 260 15% 13%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 260 15% 11%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 271 89% 74%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 260 15% 20%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 260 15% 18%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 260, 27%, 54%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 260 15% 25%;
+    --input: 260 15% 25%;
+    --ring: 271 89% 74%;
+
+    --radius: 0.75rem;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+}
+
+@layer utilities {
+  .page-container {
+    @apply relative w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .glass-card {
+    @apply backdrop-blur-sm bg-brand-purple/10 border border-brand-purple/20 shadow-lg;
+  }
+
+  .page-section {
+    @apply py-16 md:py-24;
+  }
+
+  .heading-xl {
+    @apply font-heading text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+  }
+
+  .heading-lg {
+    @apply font-heading text-3xl md:text-4xl font-bold tracking-tight;
+  }
+
+  .heading-md {
+    @apply font-heading text-2xl md:text-3xl font-bold;
+  }
+
+  .heading-sm {
+    @apply font-heading text-xl md:text-2xl font-semibold;
+  }
+
+  .subtle-text {
+    @apply text-muted-foreground;
+  }
+
+  .page-transition {
+    @apply animate-fade-in;
+  }
+
+  .transition-standard {
+    @apply transition-all duration-300 ease-in-out;
+  }
+}
+
+/* Page transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 400ms, transform 400ms;
+}
+
+.page-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 300ms, transform 300ms;
+}
