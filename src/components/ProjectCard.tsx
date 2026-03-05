@@ -1,87 +1,59 @@
-
-import { ExternalLink, Github } from 'lucide-react';
-import { cn } from '@/lib/utils';
-
-interface ProjectCardProps {
-  title: string;
-  description: string;
-  image: string;
-  tags: string[];
-  githubUrl?: string;
-  liveUrl?: string;
-  className?: string;
-}
-
-const ProjectCard = ({
-  title,
-  description,
-  image,
-  tags,
-  githubUrl,
-  liveUrl,
-  className,
-}: ProjectCardProps) => {
+const ProjectCard = ({ title, description, image, tags, githubUrl, liveUrl, pdfUrl }) => {
   return (
-    <div 
-      className={cn(
-        "group overflow-hidden rounded-xl bg-card shadow-md hover:shadow-xl transition-standard border border-border",
-        className
-      )}
-    >
-      {/* Project Image with Overlay */}
-      <div className="relative overflow-hidden aspect-video">
-        <img
-          src={image}
-          alt={title}
-          className="w-full h-full object-cover object-center transition-standard group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-standard flex items-end">
-          <div className="p-4 w-full">
-            <div className="flex space-x-2 justify-end">
-              {githubUrl && (
-                <a
-                  href={githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 rounded-full bg-white/20 text-white hover:bg-brand-purple transition-standard"
-                  aria-label="View GitHub Repository"
-                >
-                  <Github size={18} />
-                </a>
-              )}
-              {liveUrl && (
-                <a
-                  href={liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 rounded-full bg-white/20 text-white hover:bg-brand-purple transition-standard"
-                  aria-label="View Live Project"
-                >
-                  <ExternalLink size={18} />
-                </a>
-              )}
-            </div>
+    <div className="bg-black/20 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 shadow-lg group transition-transform hover:scale-105">
+      {/* Project Image */}
+      <img src={image} alt={title} className="w-full h-auto object-contain rounded-t-2xl" />
+      {/* Project Content */}
+      <div className="p-6 flex flex-col justify-between h-full">
+        <div>
+          <h3 className="text-xl font-semibold mb-2 text-white">{title}</h3>
+          <p className="text-gray-300 text-sm mb-3">{description}</p>
+
+          {/* Tags */}
+          <div className="flex flex-wrap gap-2">
+            {tags?.map((tag, idx) => (
+              <span
+                key={idx}
+                className="text-xs px-2 py-1 bg-blue-500/10 text-blue-400 rounded-full border border-blue-500/20 backdrop-blur-sm"
+              >
+                {tag}
+              </span>
+            ))}
           </div>
         </div>
-      </div>
 
-      {/* Project Details */}
-      <div className="p-6 space-y-4">
-        <h3 className="text-xl font-semibold group-hover:text-brand-purple transition-standard">
-          {title}
-        </h3>
-        <p className="text-muted-foreground line-clamp-3">{description}</p>
-        
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2">
-          {tags.map((tag, index) => (
-            <span
-              key={index}
-              className="px-3 py-1 text-xs font-medium bg-secondary text-secondary-foreground rounded-full"
+        {/* Links */}
+        <div className="mt-4 flex flex-wrap gap-3">
+          {liveUrl && (
+            <a
+              href={liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 bg-cyan-400 text-black font-medium rounded-lg hover:bg-cyan-500 transition"
             >
-              {tag}
-            </span>
-          ))}
+              Live Site
+            </a>
+          )}
+          {pdfUrl && (
+            <a
+              href={pdfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 bg-blue-400 text-black font-medium rounded-lg hover:bg-blue-500 transition"
+            >
+              View PDF
+            </a>
+          )}
+          {githubUrl && (
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 bg-gray-700 text-white font-medium rounded-lg hover:bg-gray-600 transition"
+            >
+              GitHub
+            </a>
+          )}
         </div>
       </div>
     </div>

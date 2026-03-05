@@ -11,62 +11,60 @@ const About = () => {
 
   return (
     <main className="pt-16 page-transition">
+      <div className="fixed inset-0 -z-10 bg-gradient-to-br from-blue-600/20 via-transparent to-cyan-400/20" />
+      <div className="fixed -top-40 -left-40 w-[600px] h-[600px] bg-blue-500/20 blur-[180px] rounded-full -z-10" />
+      <div className="fixed -bottom-40 -right-40 w-[600px] h-[600px] bg-cyan-400/20 blur-[180px] rounded-full -z-10" />
+      <div className="fixed inset-0 -z-10 opacity-[0.03] bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] bg-[length:40px_40px]" />
       {/* Hero Section */}
-      <section className="bg-brand-gray text-white py-24">
-        <div className="page-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="order-2 md:order-1 animate-fade-in">
-              <h1 className="heading-lg mb-6">About Me</h1>
-              <p className="text-lg text-gray-300 mb-6">
-                I'm a passionate Frontend Developer with over 1.5 years of experience crafting responsive, scalable web applications and intuitive digital interfaces for clients across various industries.
-              </p>
-              <p className="text-lg text-gray-300 mb-6">
-                My journey in web development began with a fascination for interactive design and user experience. Today, I specialize in building modern UIs using HTML, CSS, JavaScript, React.js, and Tailwind CSS, while continuously exploring new technologies and tools like Figma to enhance usability and visual appeal.
-              </p>
 
-              <div className="flex flex-wrap gap-4 mt-8">
-                <Link
-                  to="/portfolio"
-                  className="px-6 py-3 bg-brand-red rounded-lg font-medium inline-flex items-center gap-2 hover:bg-red-700 transition-standard"
-                >
-                  View My Work <ArrowRight size={18} />
-                </Link>
-                <Link
-                  to="/resume"
-                  className="px-6 py-3 bg-muted text-white rounded-lg font-medium inline-flex items-center gap-2 hover:bg-secondary transition-standard"
-                >
-                  My Resume
-                </Link>
-              </div>
-            </div>
+      <section className="relative min-h-[90vh] flex items-center justify-center py-24">
+        <div className="page-container text-center space-y-6 max-w-xl mx-auto">
 
-            <div className="order-1 md:order-2 relative animate-fade-in-right">
-              <div className="relative rounded-2xl overflow-hidden aspect-square max-w-md mx-auto">
-                {/* Glowing effect container */}
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-purple/30 to-brand-red/20 rounded-2xl blur-xl"></div>
 
-                {/* Main image container with gradient overlay */}
-                <div className="relative bg-gradient-to-tr from-brand-purple/30 to-brand-red/20 rounded-2xl overflow-hidden aspect-square max-w-md mx-auto shadow-2xl border border-brand-purple/20 backdrop-blur-sm">
-                  <img
-                    src="/placeholder.svg"
-                    alt="Developer"
-                    className="w-full h-full object-cover object-center mix-blend-overlay opacity-75"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-brand-black/70" />
-                </div>
 
-                {/* Decorative elements */}
-                <div className="absolute -top-6 -right-6 w-24 h-24 bg-brand-purple/20 rounded-full blur-xl" />
-                <div className="absolute -bottom-5 -left-5 w-32 h-32 bg-brand-red/20 rounded-2xl -z-10" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-brand-purple/10 rounded-full blur-3xl" />
-              </div>
-            </div>
+          <h1 className="heading-xl font-serif leading-tight">
+            About
+            <span className="bg-gradient-to-r from-brand-purple to-brand-red bg-clip-text text-transparent">
+              {" "} Me
+            </span>{" "}
+          </h1>
+
+          <p className="text-lg text-white mb-6">
+            I'm a passionate <span className="text-red-500 font-semibold">Frontend</span> and <span className="text-red-500 font-semibold">WordPress Developer</span> with over <span className="text-red-500 font-semibold">2 years of experience</span> crafting responsive and scalable web applications and intuitive digital interfaces for clients across various industries. I specialize in building modern UIs using <span className="text-red-500 font-semibold">HTML</span>, <span className="text-red-500 font-semibold">CSS</span>, <span className="text-red-500 font-semibold">JavaScript</span>, <span className="text-red-500 font-semibold">React.js</span>, and <span className="text-red-500 font-semibold">Tailwind CSS</span>, while converting <span className="text-red-500 font-semibold">Figma designs</span> into fully responsive websites. I also provide <span className="text-red-500 font-semibold">WooCommerce</span> development services as a freelancer on Fiverr, building functional, responsive eCommerce websites focused on <span className="text-red-500 font-semibold">performance</span>, <span className="text-red-500 font-semibold">SEO</span>, and <span className="text-red-500 font-semibold">user experience</span>.
+          </p>
+
+          <p className="text-lg text-white mb-6">
+            Beyond coding, I enjoy collaborating with designers and clients to transform ideas into functional digital solutions. I’m constantly refining my skills in <span className="text-red-500 font-semibold">React.js</span>, <span className="text-red-500 font-semibold">Tailwind CSS</span>, and exploring modern tools like <span className="text-red-500 font-semibold">Figma</span> to improve design handoffs and workflow efficiency.
+          </p>
+
+          <p className="text-lg text-white mb-6">
+            I am passionate about creating beautiful, intuitive, and interactive interfaces that not only look great but also solve real problems for users. Every project I work on is an opportunity to combine <span className="text-red-500 font-semibold">creativity</span>, <span className="text-red-500 font-semibold">performance</span>, and <span className="text-red-500 font-semibold">usability</span> in perfect harmony.
+          </p>
+
+
+
+          <div className="flex flex-wrap justify-center gap-5 pt-6">
+            <Link
+              to="/portfolio"
+              className="px-7 py-3 bg-gradient-to-r from-brand-purple to-brand-red rounded-lg font-medium inline-flex items-center gap-2 hover:opacity-90 transition duration-300 shadow-lg"
+            >
+              View My Work <ArrowRight size={18} />
+            </Link>
+
+            <Link
+              to="/resume"
+              className="px-7 py-3 bg-white/5 border border-white/10 rounded-lg font-medium inline-flex items-center gap-2 hover:bg-white/10 transition duration-300"
+            >
+              My Resume
+            </Link>
           </div>
         </div>
       </section>
 
+
+
       {/* Experience & Education */}
-      <section className="page-section bg-gradient-to-b from-background to-muted">
+      <section className="page-section ">
         <div className="page-container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             <div className="space-y-8">
@@ -74,6 +72,30 @@ const About = () => {
 
               <div className="border-l-2 border-brand-red pl-6 space-y-12 relative">
                 <div className="absolute w-3 h-3 bg-brand-red rounded-full -left-[7px] top-0" />
+
+                <div className="space-y-2">
+                  <div className="flex justify-between items-start">
+                    <h3 className="text-xl font-semibold">ReactJS Developer Remote </h3>
+                    <span className="text-sm font-medium px-3 py-1 bg-brand-red/20 text-brand-red rounded-full">Jan 2025 - May 2025</span>
+                  </div>
+                  <h4 className="text-muted-foreground">Precise Tech, Canada</h4>
+                  <p className="text-muted-foreground">
+                    Created responsive user interfaces and implemented frontend functionality for web applications and worked on distribution management systems.
+                  </p>
+                </div>
+
+
+
+                <div className="space-y-2">
+                  <div className="flex justify-between items-start">
+                    <h3 className="text-xl font-semibold">Frontend Developer Intern</h3>
+                    <span className="text-sm font-medium px-3 py-1 bg-brand-red/20 text-brand-red rounded-full">Nov 2024 - Jan 2025</span>
+                  </div>
+                  <h4 className="text-muted-foreground">DevelopersHub Corporation©, Islamabad</h4>
+                  <p className="text-muted-foreground">
+                    Developed and maintained projects, focusing on responsive design and API integrations.
+                  </p>
+                </div>
 
                 <div className="space-y-2">
                   <div className="flex justify-between items-start">
@@ -87,27 +109,6 @@ const About = () => {
 
                 </div>
 
-                <div className="space-y-2">
-                  <div className="flex justify-between items-start">
-                    <h3 className="text-xl font-semibold">Frontend Developer</h3>
-                    <span className="text-sm font-medium px-3 py-1 bg-brand-red/20 text-brand-red rounded-full">Nov 2024 - Jan 2025</span>
-                  </div>
-                  <h4 className="text-muted-foreground">DevelopersHub Corporation©, Islamabad</h4>
-                  <p className="text-muted-foreground">
-                    Developed and maintained projects, focusing on responsive design and API integrations.
-                  </p>
-                </div>
-
-                <div className="space-y-2">
-                  <div className="flex justify-between items-start">
-                    <h3 className="text-xl font-semibold">ReactJS Developer Remote Intern</h3>
-                    <span className="text-sm font-medium px-3 py-1 bg-brand-red/20 text-brand-red rounded-full">Jan 2025 - May 2025</span>
-                  </div>
-                  <h4 className="text-muted-foreground">Precise Tech, Canada</h4>
-                  <p className="text-muted-foreground">
-                    Created responsive user interfaces and implemented frontend functionality for web applications and worked on distribution management systems.
-                  </p>
-                </div>
               </div>
             </div>
 
@@ -124,32 +125,16 @@ const About = () => {
                     <span className="text-sm font-medium px-3 py-1 bg-brand-red/20 text-brand-red rounded-full">2021 -2025</span>
                   </div>
                   <h4 className="text-muted-foreground">COMSATS University Islamabad</h4>
+                  <div className="flex justify-start items-start ">
+                    <h3 className="text-muted-foreground mr-4"> Grade: A</h3>
+                    <span className="text-sm font-medium px-3 py-1 bg-brand-red/20 text-brand-red rounded-full">GPA: 3.64</span>
+                  </div>
+
+
                   <p className="text-muted-foreground">
-                    Major in Computer Science with focus on web technologies and application development.
+                    Major in Computer Science with focus on web technologies and Web application development.
                   </p>
                 </div>
-
-                {/* <div className="space-y-2">
-                  <div className="flex justify-between items-start">
-                    <h3 className="text-xl font-semibold">AWS Certified Developer</h3>
-                    <span className="text-sm font-medium px-3 py-1 bg-brand-red/20 text-brand-red rounded-full">2022</span>
-                  </div>
-                  <h4 className="text-muted-foreground">Amazon Web Services</h4>
-                  <p className="text-muted-foreground">
-                    Professional certification for developing, deploying, and debugging cloud-based applications.
-                  </p>
-                </div>
-
-                <div className="space-y-2">
-                  <div className="flex justify-between items-start">
-                    <h3 className="text-xl font-semibold">MongoDB Certified Developer</h3>
-                    <span className="text-sm font-medium px-3 py-1 bg-brand-red/20 text-brand-red rounded-full">2020</span>
-                  </div>
-                  <h4 className="text-muted-foreground">MongoDB University</h4>
-                  <p className="text-muted-foreground">
-                    Certification in database design, operations, and application development with MongoDB.
-                  </p>
-                </div> */}
 
 
               </div>
@@ -159,7 +144,7 @@ const About = () => {
       </section>
 
       {/* Skills Section */}
-      <section className="page-section bg-brand-charcoal/30">
+      <section className="page-section">
         <div className="page-container">
           <div className="space-y-6 text-center max-w-3xl mx-auto mb-16">
             <h2 className="heading-lg">Technical Skills</h2>
@@ -195,9 +180,51 @@ const About = () => {
             />
 
             <SkillCard
-              title="Bootstrap"
+              title="WordPress Development"
               icon={<Server size={24} />}
-              description="Leveraging Bootstrap's grid and components to build responsive layouts quickly."
+              description="Custom WordPress themes, plugin development, and full website development tailored to client requirements."
+            />
+
+            <SkillCard
+              title="WooCommerce"
+              icon={<Layers size={24} />}
+              description="Building secure, responsive, and conversion-optimized eCommerce stores using WooCommerce."
+            />
+
+            <SkillCard
+              title="Page Builders & Customization"
+              icon={<Monitor size={24} />}
+              description="Working with Elementor, WPBakery, and Gutenberg to create flexible, client-friendly websites."
+            />
+
+            <SkillCard
+              title="WordPress Security & Backup"
+              icon={<Globe size={24} />}
+              description="Implementing security best practices, regular backups, and malware protection for WordPress sites."
+            />
+
+            <SkillCard
+              title="SEO & Performance Optimization"
+              icon={<Monitor size={24} />}
+              description="Enhancing website speed, SEO, and accessibility for better user experience and search ranking."
+            />
+
+            <SkillCard
+              title="Plugin Customization"
+              icon={<Server size={24} />}
+              description="Modifying and extending existing WordPress plugins to meet project-specific requirements."
+            />
+
+            <SkillCard
+              title="Database & CMS Basics"
+              icon={<Database size={24} />}
+              description="Managing website content and data using MySQL, PHP, and WordPress database integrations."
+            />
+
+            <SkillCard
+              title="Responsive Web Design"
+              icon={<Monitor size={24} />}
+              description="Implementing fully responsive designs across mobile, tablet, and desktop using CSS, Tailwind, and Bootstrap."
             />
 
             <SkillCard
@@ -213,43 +240,17 @@ const About = () => {
             />
 
             <SkillCard
-              title="Responsive Web Design"
-              icon={<Monitor size={24} />}
-              description="Implementing fully responsive designs across mobile, tablet, and desktop using CSS, Tailwind, and Bootstrap."
-            />
-
-            <SkillCard
               title="REST API Integration"
               icon={<Globe size={24} />}
               description="Integrating frontend apps with RESTful APIs for dynamic data using Fetch or Axios."
             />
 
-            <SkillCard
-              title="C++ & Python"
-              icon={<Cpu size={24} />}
-              description="Strong understanding of programming fundamentals and logic building using C++ and Python."
-            />
-
-            <SkillCard
-              title="SQL & Database Basics"
-              icon={<Database size={24} />}
-              description="Basic data management and querying experience using SQL and MongoDB."
-            />
-
-            <SkillCard
-              title="Machine Learning (Intro)"
-              icon={<Cpu size={24} />}
-              description="Studied core ML principles as part of academic curriculum; familiar with basic models and applications."
-            />
-
           </div>
-
-
         </div>
       </section>
 
       {/* Personal Interests */}
-      <section className="page-section bg-gradient-to-b from-muted to-background">
+      <section className="page-section">
         <div className="page-container">
           <div className="max-w-3xl mx-auto">
             <h2 className="heading-md mb-8 text-center">Beyond Coding</h2>
@@ -257,7 +258,7 @@ const About = () => {
             <div className="space-y-8">
               <p className="text-lg">
                 When I'm not immersed in code, I enjoy exploring new technologies through personal projects and contributing to open-source communities.
-                Outside the tech world, I'm passionate about listening to Music and baking.
+                Outside the tech world, I'm passionate about <span className="font-semibold">cooking</span> and <span className="font-semibold">walking</span>.
               </p>
 
               <p className="text-lg">
@@ -268,7 +269,7 @@ const About = () => {
               <div className="mt-10 text-center">
                 <Link
                   to="/contact"
-                  className="px-6 py-3 bg-brand-red text-white rounded-lg font-medium inline-flex items-center gap-2 hover:bg-red-700 transition-standard"
+                  className="px-7 py-3 bg-gradient-to-r from-brand-purple to-brand-red rounded-lg font-medium inline-flex items-center gap-2 hover:opacity-90 transition duration-300 shadow-lg"
                 >
                   Let's Connect <ArrowRight size={18} />
                 </Link>

@@ -1,7 +1,6 @@
-
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, Code, Database, Server, Layers, Monitor } from 'lucide-react';
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight, Server, Layers, Monitor } from "lucide-react";
 
 const Home = () => {
   useEffect(() => {
@@ -9,263 +8,263 @@ const Home = () => {
   }, []);
 
   return (
-    <main className="pt-16 page-transition">
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-brand-black to-brand-gray text-white">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-grid-white/[0.05] bg-[length:30px_30px]" />
-        </div>
+    <main className="relative pt-16 text-white overflow-hidden">
 
-        <div className="page-container py-16 md:py-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 md:space-y-8 max-w-2xl animate-fade-in">
-              <span className="inline-block px-4 py-2 bg-brand-red rounded-full text-sm font-medium tracking-wide">
-                Frontend Developer
-              </span>
-              <h1 className="heading-xl">
-                Designing & <span className="text-brand-red"> Developing Beautiful</span> User Interfaces
-              </h1>
-              <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-                I'm a passionate <span className="font-semibold text-white">Frontend Developer</span> who specializes in building responsive, user-friendly web interfaces using <span className="text-brand-red">HTML</span>, <span className="text-brand-red">CSS</span>, <span className="text-brand-red">JavaScript</span>, and modern frameworks like <span className="text-brand-red">React.js</span>. I focus on <span className="text-brand-red">clean code</span>, <span className="text-brand-red">accessibility</span>, and <span className="text-brand-red">performance-driven design</span>. I also create intuitive UI mockups and prototypes using <span className="text-brand-red">Figma</span> to bring web designs to life.
-              </p>
+      {/* GLOBAL BACKGROUND (ONLY ONE SYSTEM) */}
+      <div className="fixed inset-0 -z-10 bg-gradient-to-br from-blue-600/20 via-transparent to-cyan-400/20" />
+      <div className="fixed -top-40 -left-40 w-[600px] h-[600px] bg-blue-500/20 blur-[180px] rounded-full -z-10" />
+      <div className="fixed -bottom-40 -right-40 w-[600px] h-[600px] bg-cyan-400/20 blur-[180px] rounded-full -z-10" />
+      <div className="fixed inset-0 -z-10 opacity-[0.03] bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] bg-[length:40px_40px]" />
 
-              <div className="flex flex-wrap gap-4">
-                <Link
-                  to="/portfolio"
-                  className="px-6 py-3 bg-brand-red rounded-lg font-medium inline-flex items-center gap-2 hover:bg-red-700 transition-standard"
-                >
-                  View My Work <ArrowRight size={18} />
-                </Link>
-                <Link
-                  to="/contact"
-                  className="px-6 py-3 bg-muted text-white rounded-lg font-medium inline-flex items-center gap-2 hover:bg-secondary transition-standard"
-                >
-                  Contact Me
-                </Link>
-              </div>
-            </div>
+      {/* ================= HERO ================= */}
+      <section className="relative min-h-[90vh] flex items-center justify-center py-24">
+        <div className="page-container text-center space-y-8 max-w-5xl mx-auto">
 
-            <div className="hidden md:block relative animate-fade-in-right">
-              <div className="relative bg-gradient-to-tr from-brand-red/20 to-brand-red/10 rounded-2xl overflow-hidden aspect-square max-w-md mx-auto shadow-2xl">
-                <div className="absolute inset-0 bg-[url('/placeholder.svg')] bg-cover bg-center opacity-40 mix-blend-overlay" />
-                <div className="absolute inset-0 backdrop-blur-sm" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-brand-red/20 to-transparent" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-6xl font-bold text-foreground/80">&lt;/&gt;</span>
-                </div>
-              </div>
-              <div className="absolute -bottom-5 -right-5 w-40 h-40 bg-brand-red/20 rounded-2xl backdrop-blur-md -z-10" />
-            </div>
+          <span className="inline-block px-5 py-2 bg-white/5 border border-white/10 rounded-full text-sm backdrop-blur-md">
+            Frontend & eCommerce WordPress Developer
+          </span>
+
+          <h1 className="heading-xl font-serif leading-tight">
+            Designing &
+            <span className="bg-gradient-to-r from-brand-purple to-brand-red bg-clip-text text-transparent">
+              {" "}Developing Beautiful
+            </span>{" "}
+            User Interfaces
+          </h1>
+
+          <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+            I'm a passionate <span className="font-semibold text-white">Frontend & WordPress Developer</span> specializing in building responsive, user-friendly websites and eCommerce platforms.
+
+            I develop modern web interfaces using <span className="text-brand-purple">HTML</span>,
+            <span className="text-brand-purple"> CSS</span>,
+            <span className="text-brand-purple"> JavaScript</span>, and frameworks like
+            <span className="text-brand-purple"> React.js</span>.
+
+            I also build dynamic and scalable websites using
+            <span className="text-brand-red"> WordPress</span>, including custom theme development,
+            <span className="text-brand-red"> WooCommerce</span> store setup, plugin customization, and performance optimization.
+
+            My focus is on <span className="text-brand-purple">clean code</span>,
+            <span className="text-brand-purple">accessibility</span>,
+            <span className="text-brand-purple">SEO optimization</span>, and
+            <span className="text-brand-purple">performance-driven design</span>.
+
+            I convert <span className="text-brand-red">Figma</span> designs into fully functional, responsive websites with pixel-perfect accuracy.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-5 pt-6">
+            <Link
+              to="/portfolio"
+              className="px-7 py-3 bg-gradient-to-r from-brand-purple to-brand-red rounded-lg font-medium inline-flex items-center gap-2 hover:opacity-90 transition duration-300 shadow-lg"
+            >
+              View My Work <ArrowRight size={18} />
+            </Link>
+
+            <Link
+              to="/contact"
+              className="px-7 py-3 bg-white/5 border border-white/10 rounded-lg font-medium inline-flex items-center gap-2 hover:bg-white/10 transition duration-300"
+            >
+              Contact Me
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Skills Overview Section */}
-      <section className="page-section bg-brand-charcoal/30">
+      {/* ================= SKILLS ================= */}
+      <section className="relative py-24">
         <div className="page-container">
-          <div className="space-y-6 text-center max-w-3xl mx-auto mb-16">
-            <h2 className="heading-lg">Technical Expertise</h2>
-            <p className="text-muted-foreground text-lg">
-              I specialize in crafting modern, responsive, and accessible web interfaces using <span className="text-brand-red">HTML</span>, <span className="text-brand-red">CSS</span>, <span className="text-brand-red">JavaScript</span>, <span className="text-brand-red">React.js</span>, and <span className="text-brand-red">Tailwind CSS</span>. I also design intuitive UI mockups in <span className="text-brand-red">Figma</span>, ensuring seamless user experiences across devices.
+
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-6">
+            <h2 className="heading-lg">
+              My <span className="bg-gradient-to-r from-brand-purple to-brand-red bg-clip-text text-transparent">Technical Expertise</span>
+            </h2>
+            <p className="text-gray-400 text-lg">
+              I build high-performance websites and eCommerce platforms, transforming modern UI designs into scalable, responsive digital experiences.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-card p-6 rounded-xl shadow-md border border-border hover:shadow-lg transition-standard">
-              <div className="text-brand-red mb-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            {/* Frontend Development */}
+            <div className="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-brand-purple/40 transition duration-300 hover:-translate-y-2">
+              <div className="text-brand-purple mb-4">
                 <Monitor size={28} />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Frontend</h3>
-              <p className="text-muted-foreground mb-4">
-                Creating responsive, dynamic user interfaces with <span className="text-brand-red">JavaScript</span>, React, and modern CSS frameworks.
+              <h3 className="text-xl font-semibold mb-3">Frontend Development</h3>
+              <p className="text-gray-400 mb-4">
+                Building modern, interactive user interfaces using React.js and scalable frontend architectures.
               </p>
               <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-brand-red/20 text-brand-red text-xs font-medium rounded-full">JavaScript</span>
-                <span className="px-3 py-1 bg-brand-red/20 text-brand-red text-xs font-medium rounded-full">React</span>
-                <span className="px-3 py-1 bg-brand-red/20 text-brand-red text-xs font-medium rounded-full">Redux</span>
-                <span className="px-3 py-1 bg-brand-red/20 text-brand-red text-xs font-medium rounded-full">TailwindCSS</span>
+                <span className="skill-pill">React.js</span>
+                <span className="skill-pill">JavaScript (ES6+)</span>
+                <span className="skill-pill">Tailwind CSS</span>
+                <span className="skill-pill">Responsive Design</span>
               </div>
             </div>
 
-
-            <div className="bg-card p-6 rounded-xl shadow-md border border-border hover:shadow-lg transition-standard">
+            {/* WordPress Development */}
+            <div className="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-brand-purple/40 transition duration-300 hover:-translate-y-2">
               <div className="text-brand-red mb-4">
                 <Server size={28} />
               </div>
-              <h3 className="text-xl font-semibold mb-2">UI/UX Design</h3>
-              <p className="text-muted-foreground mb-4">
-                Designing clean, user-friendly interfaces and interactive mockups using Figma and design systems.
+              <h3 className="text-xl font-semibold mb-3">WordPress Development</h3>
+              <p className="text-gray-400 mb-4">
+                Developing custom themes, dynamic CMS solutions, and scalable WordPress websites.
               </p>
               <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-brand-red/20 text-brand-red text-xs font-medium rounded-full">Figma</span>
-                <span className="px-3 py-1 bg-brand-red/20 text-brand-red text-xs font-medium rounded-full">Wireframing</span>
-                <span className="px-3 py-1 bg-brand-red/20 text-brand-red text-xs font-medium rounded-full">Prototyping</span>
+                <span className="skill-pill">Custom Themes</span>
+                <span className="skill-pill">Plugin Customization</span>
+                <span className="skill-pill">ACF</span>
+                <span className="skill-pill">Performance Optimization</span>
               </div>
             </div>
 
+            {/* WooCommerce Development */}
+            <div className="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-brand-red/40 transition duration-300 hover:-translate-y-2">
+              <div className="text-brand-purple mb-4">
+                <Layers size={28} />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">WooCommerce Development</h3>
+              <p className="text-gray-400 mb-4">
+                Creating secure, conversion-focused online stores with seamless checkout experiences.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="skill-pill">Store Setup</span>
+                <span className="skill-pill">Payment Integration</span>
+                <span className="skill-pill">Product Optimization</span>
+                <span className="skill-pill">Speed Optimization</span>
+              </div>
+            </div>
 
-            <div className="bg-card p-6 rounded-xl shadow-md border border-border hover:shadow-lg transition-standard">
+            {/* Figma to Website */}
+            <div className="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-brand-red/40 transition duration-300 hover:-translate-y-2">
               <div className="text-brand-red mb-4">
                 <Monitor size={28} />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Performance & Accessibility</h3>
-              <p className="text-muted-foreground mb-4">
-                Optimizing web applications for fast loading times, accessibility standards, and seamless experiences on all devices.
+              <h3 className="text-xl font-semibold mb-3">Figma to Website</h3>
+              <p className="text-gray-400 mb-4">
+                Converting Figma designs into pixel-perfect, fully responsive websites with clean code.
               </p>
               <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-brand-red/20 text-brand-red text-xs font-medium rounded-full">Lighthouse</span>
-                <span className="px-3 py-1 bg-brand-red/20 text-brand-red text-xs font-medium rounded-full">ARIA</span>
-                <span className="px-3 py-1 bg-brand-red/20 text-brand-red text-xs font-medium rounded-full">Web Vitals</span>
-              </div>
-            </div>
-
-
-            <div className="bg-card p-6 rounded-xl shadow-md border border-border hover:shadow-lg transition-standard">
-              <div className="text-brand-red mb-4">
-                <Layers size={28} />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Testing & Version Control</h3>
-              <p className="text-muted-foreground mb-4">
-                Ensuring code quality and stability with modern testing practices and collaborative workflows using Git.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-brand-red/20 text-brand-red text-xs font-medium rounded-full">Git</span>
-                <span className="px-3 py-1 bg-brand-red/20 text-brand-red text-xs font-medium rounded-full">Jest</span>
-                <span className="px-3 py-1 bg-brand-red/20 text-brand-red text-xs font-medium rounded-full">GitHub</span>
+                <span className="skill-pill">Pixel Perfect</span>
+                <span className="skill-pill">Cross-Browser</span>
+                <span className="skill-pill">Mobile First</span>
+                <span className="skill-pill">SEO Friendly</span>
               </div>
             </div>
 
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-14 text-center">
             <Link
               to="/about"
-              className="inline-flex items-center gap-2 text-brand-purple font-medium hover:underline"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-brand-purple to-brand-red bg-clip-text text-transparent font-semibold hover:opacity-80 transition"
             >
               Learn more about my skills <ArrowRight size={16} />
             </Link>
           </div>
+
+
+
         </div>
       </section>
 
-      {/* Featured Projects */}
-      <section className="page-section bg-gradient-to-b from-background to-muted">
+      {/* ================= PROJECTS ================= */}
+      <section className="relative py-24">
         <div className="page-container">
-          <div className="space-y-6 text-center max-w-3xl mx-auto mb-16">
-            <h2 className="heading-lg">Featured Projects</h2>
-            <p className="text-muted-foreground text-lg">
-              A showcase of my most recent work, demonstrating my technical expertise and problem-solving abilities.
+
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-6">
+
+            <h2 className="heading-lg">
+              Featured <span className="bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">Projects</span>
+            </h2>
+            <p className="text-gray-400 text-lg">
+              A showcase of my recent work demonstrating clean UI and technical expertise.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="group rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-standard border border-border">
-              <div className="relative aspect-video overflow-hidden">
-                <img
-                  src="/e-com-project.png"
-                  alt="E-Commerce Website"
-                  className="w-full h-full object-cover object-center transition-standard group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-standard flex items-end">
-                  <div className="p-6">
-                    <div className="flex gap-3">
-                      <span className="px-3 py-1 bg-muted/40 text-foreground text-xs font-medium rounded-full">React.js</span>
-                      <span className="px-3 py-1 bg-muted/40 text-foreground text-xs font-medium rounded-full">Tailwind CSS</span>
-                      <span className="px-3 py-1 bg-muted/40 text-foreground text-xs font-medium rounded-full">Responsive Design</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="p-6 bg-card">
-                <h3 className="text-xl font-semibold mb-2 group-hover:text-brand-red transition-standard">
-                  Responsive E-Commerce Website
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+            <div className="group rounded-2xl overflow-hidden bg-white/5 backdrop-blur-md border border-white/10 hover:border-cyan-400/40 transition duration-300 hover:-translate-y-2">
+              <img
+                src="/Home.png"
+                alt="Industrial Project"
+                className="w-full aspect-video object-contain bg-black transition group-hover:scale-105"
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-3 group-hover:text-cyan-400 transition">
+                  Project Allocation & Evaluation According to NCEAC Rules
                 </h3>
-                <p className="text-muted-foreground mb-4">
-                  A modern e-commerce frontend built with React.js and Tailwind CSS. Features product listings, a shopping cart, and a fully responsive design for seamless user experience across all devices.
-                </p>
+                <p className="text-gray-400 mb-4">
+                  A centralized final-year project management system with secure RBAC, automated supervisor allocation, and structured evaluation workflows.
+                  Designed to improve transparency, efficiency, and compliance with accreditation standards.<br />
+                  (Frontend prototype deployed & Backend architecture implemented locally.)          </p>
                 <a
-                  href="https://e-commerce-website-phi-neon.vercel.app"
+                  href="https://fypproject-rho.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block mt-2 text-sm font-medium text-brand-red hover:underline"
+                  className="text-cyan-400 font-medium hover:underline"
                 >
-
-                  🔗 View Live Demo
-                  <br />
-                  https://e-commerce-website-phi-neon.vercel.app/
+                  🔗 View Frontend Demo
                 </a>
               </div>
-
-
             </div>
 
-            <div className="group rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-standard border border-border">
-              <div className="relative aspect-video overflow-hidden">
-                <img
-                  src="/fidelity-clone.png"
-                  alt="Fidelity Clone Project"
-                  className="w-full h-full object-cover object-center transition-standard group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-standard flex items-end">
-                  <div className="p-6">
-                    <div className="flex gap-3">
-                      <span className="px-3 py-1 bg-muted/40 text-foreground text-xs font-medium rounded-full">React.js</span>
-                      <span className="px-3 py-1 bg-muted/40 text-foreground text-xs font-medium rounded-full">Tailwind CSS</span>
-                      <span className="px-3 py-1 bg-muted/40 text-foreground text-xs font-medium rounded-full">UI Clone</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="p-6 bg-card">
-                <h3 className="text-xl font-semibold mb-2 group-hover:text-brand-red transition-standard">Fidelity.com Clone</h3>
-                <p className="text-muted-foreground mb-4">
-                  A responsive clone of Fidelity.com built using React.js and Tailwind CSS, showcasing precision in layout, design, and UI responsiveness.
-                </p>
+            <div className="group rounded-2xl overflow-hidden bg-white/5 backdrop-blur-md border border-white/10 hover:border-cyan-400/40 transition duration-300 hover:-translate-y-2">
+              <img
+                src="/nature-home.png"
+                alt="Industrial Project"
+                className="w-full aspect-video object-contain bg-black transition group-hover:scale-105"
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-3 group-hover:text-cyan-400 transition">
+
+                  Nature True Green Landscaping – Website Development Project                </h3>
+                <p className="text-gray-400 mb-4">
+                  Built a fully responsive, performance-optimized business website using modern frontend technologies, implementing SEO best practices, structured service architecture, and WhatsApp API integration to drive lead generation and user engagement.                         </p>
                 <a
-                  href="https://your-live-link.com"
+                  href="https://naturetruegreenlandscaping.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block mt-2 text-sm font-medium text-brand-red hover:underline"
+                  className="text-cyan-400 font-medium hover:underline"
                 >
                   🔗 View Live Demo
-                  <br />
-                  https://fidelity-clone-react-project-n8yn.vercel.app/
                 </a>
               </div>
             </div>
 
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-14 text-center">
             <Link
               to="/portfolio"
-              className="px-6 py-3 bg-brand-red text-white rounded-lg font-medium inline-flex items-center gap-2 hover:bg-red-700 transition-standard"
+              className="px-7 py-3 bg-gradient-to-r from-brand-purple to-brand-red rounded-lg font-medium inline-flex items-center gap-2 hover:opacity-90 transition duration-300 shadow-lg"
             >
               View All Projects <ArrowRight size={18} />
             </Link>
           </div>
+
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-brand-black text-white">
-        <div className="page-container">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
-            <h2 className="heading-lg">Ready to Start Your Project?</h2>
-            <p className="text-gray-300 text-lg">
-              Let's collaborate to bring your ideas to life with modern technologies and best practices.
-            </p>
-            <div className="pt-4">
-              <Link
-                to="/contact"
-                className="px-8 py-4 bg-brand-red rounded-lg font-medium inline-flex items-center gap-2 hover:bg-red-700 transition-standard"
-              >
-                Get in Touch <ArrowRight size={18} />
-              </Link>
-            </div>
-          </div>
+      {/* ================= CTA ================= */}
+      <section className="relative py-24 text-center">
+        <div className="max-w-3xl mx-auto space-y-6">
+          <h2 className="text-3xl md:text-4xl font-bold">
+            Ready to Start Your Project?
+          </h2>
+          <p className="text-gray-400 text-lg">
+            Let’s build something modern and high-performing together.
+          </p>
+          <Link
+            to="/contact"
+            className="px-7 py-3 bg-gradient-to-r from-brand-purple to-brand-red rounded-lg font-medium inline-flex items-center gap-2 hover:opacity-90 transition duration-300 shadow-lg"
+          >
+            Get in Touch <ArrowRight size={18} />
+          </Link>
         </div>
       </section>
+
     </main>
   );
 };

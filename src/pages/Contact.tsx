@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import { Github, Linkedin, Mail, MapPin, Phone, Send, Twitter } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -24,30 +25,57 @@ const Contact = () => {
   };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitting(true);
-    setSubmitError('');
-    
-    // Simulate API call
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
-      setSubmitSuccess(true);
-      setSubmitting(false);
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
-      });
-    }, 1000);
-  };
+  e.preventDefault();
+  setSubmitting(true);
+  setSubmitError('');
+
+  emailjs
+    .send(
+      "service_cx2fcar",
+      "template_mgas6v8",
+      {
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      },
+      "-v2t4_qnCyEGQDC2V"
+    )
+    .then(
+      () => {
+        setSubmitSuccess(true);
+        setSubmitting(false);
+
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+        });
+      },
+      (error) => {
+        setSubmitError("Failed to send message. Please try again.");
+        setSubmitting(false);
+        console.error(error);
+      }
+    );
+};
 
   return (
     <main className="pt-16 page-transition">
+      <div className="fixed inset-0 -z-10 bg-gradient-to-br from-blue-600/20 via-transparent to-cyan-400/20" />
+      <div className="fixed -top-40 -left-40 w-[600px] h-[600px] bg-blue-500/20 blur-[180px] rounded-full -z-10" />
+      <div className="fixed -bottom-40 -right-40 w-[600px] h-[600px] bg-cyan-400/20 blur-[180px] rounded-full -z-10" />
+      <div className="fixed inset-0 -z-10 opacity-[0.03] bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] bg-[length:40px_40px]" />s
       {/* Hero Section */}
-      <section className="bg-brand-gray text-white py-24">
+      <section className=" text-white py-24">
         <div className="page-container text-center">
-          <h1 className="heading-lg mb-6 animate-fade-in">Get In Touch</h1>
+          <h1 className="heading-xl font-serif leading-tight">
+            Get
+            <span className="bg-gradient-to-r from-brand-purple to-brand-red bg-clip-text text-transparent">
+              {" "}In Touch
+            </span>
+          </h1>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto animate-fade-in">
             Have a project in mind or want to discuss a potential collaboration? I'm just a message away.
           </p>
@@ -55,13 +83,13 @@ const Contact = () => {
       </section>
 
       {/* Contact Information & Form */}
-      <section className="page-section bg-background">
+      <section className="page-section ">
         <div className="page-container">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
             {/* Contact Information */}
             <div className="lg:col-span-2 space-y-8">
               <h2 className="heading-md mb-6">Contact Information</h2>
-              
+
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="mt-1 bg-brand-purple/10 p-3 rounded-full text-brand-purple">
@@ -73,7 +101,7 @@ const Contact = () => {
                     <p className="text-muted-foreground">Pakistan</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start gap-4">
                   <div className="mt-1 bg-brand-purple/10 p-3 rounded-full text-brand-purple">
                     <Mail size={20} />
@@ -84,7 +112,7 @@ const Contact = () => {
                     <p className="text-muted-foreground">sairaatta098@gmail.com</p>
                   </div>
                 </div>
-                
+
                 {/* <div className="flex items-start gap-4">
                   <div className="mt-1 bg-brand-purple/10 p-3 rounded-full text-brand-purple">
                     <Phone size={20} />
@@ -96,22 +124,22 @@ const Contact = () => {
                   </div>
                 </div> */}
               </div>
-              
+
               <div className="pt-8">
                 <h3 className="text-lg font-medium mb-4">Connect with me</h3>
                 <div className="flex space-x-4">
-                  <a 
-                    href="https://github.com/sairaatta" 
-                    target="_blank" 
+                  <a
+                    href="https://github.com/sairaatta"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="bg-muted p-3 rounded-full hover:bg-brand-purple hover:text-white transition-standard"
                     aria-label="GitHub"
                   >
                     <Github size={20} />
                   </a>
-                  <a 
-                    href="https://www.linkedin.com/in/sairaatta/" 
-                    target="_blank" 
+                  <a
+                    href="https://www.linkedin.com/in/sairaatta/"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="bg-muted p-3 rounded-full hover:bg-brand-purple hover:text-white transition-standard"
                     aria-label="LinkedIn"
@@ -127,8 +155,8 @@ const Contact = () => {
                   >
                     <Twitter size={20} />
                   </a> */}
-                  <a 
-                    href="mailto:sairaatta098@gmail.com" 
+                  <a
+                    href="mailto:sairaatta098@gmail.com"
                     className="bg-muted p-3 rounded-full hover:bg-brand-purple hover:text-white transition-standard"
                     aria-label="Email"
                   >
@@ -137,12 +165,12 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-            
+
             {/* Contact Form */}
             <div className="lg:col-span-3">
               <div className="bg-card rounded-xl shadow-md p-8 border border-border">
                 <h2 className="heading-md mb-6">Send Me a Message</h2>
-                
+
                 {submitSuccess ? (
                   <div className="text-center py-12 space-y-4">
                     <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto text-green-600">
@@ -177,7 +205,7 @@ const Contact = () => {
                           placeholder="name"
                         />
                       </div>
-                      
+
                       <div className="space-y-2">
                         <label htmlFor="email" className="text-sm font-medium">
                           Your Email <span className="text-brand-purple">*</span>
@@ -194,7 +222,7 @@ const Contact = () => {
                         />
                       </div>
                     </div>
-                    
+
                     <div className="space-y-2">
                       <label htmlFor="subject" className="text-sm font-medium">
                         Subject <span className="text-brand-purple">*</span>
@@ -210,7 +238,7 @@ const Contact = () => {
                         placeholder="Project Inquiry"
                       />
                     </div>
-                    
+
                     <div className="space-y-2">
                       <label htmlFor="message" className="text-sm font-medium">
                         Message <span className="text-brand-purple">*</span>
@@ -225,13 +253,13 @@ const Contact = () => {
                         placeholder="Tell me about your project or inquiry..."
                       />
                     </div>
-                    
+
                     {submitError && (
                       <div className="text-red-600 text-sm bg-red-50 p-3 rounded-lg">
                         {submitError}
                       </div>
                     )}
-                    
+
                     <button
                       type="submit"
                       disabled={submitting}
