@@ -258,7 +258,7 @@ const Resume = () => {
             </p>
 
             <div className="fade-up visible" style={{ transitionDelay: "0.3s", display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-              <a href="/RESUME_SAIRA_ATTA.pdf" download="Resume_Saira_Atta.pdf" className="btn-primary">
+              <a href="/RESUME_SAIRA_ATTA.pdf" download="RESUME_SAIRA_ATTA.pdf"className="btn-primary">
                 Download Resume <Download size={17} />
               </a>
               <Link to="/contact" className="btn-ghost">Contact Me</Link>
