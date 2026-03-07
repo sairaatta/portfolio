@@ -1,271 +1,595 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Server, Layers, Monitor } from "lucide-react";
+import { ArrowRight, Server, Layers, Monitor, Code2, Sparkles, ExternalLink, ChevronDown } from "lucide-react";
 
-const Home = () => {
+const styles = `
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+  :root {
+    --navy:        #020b18;
+    --navy-2:      #061525;
+    --navy-3:      #0a1f35;
+    --blue-mid:    #0d3b6e;
+    --blue-vivid:  #1565c0;
+    --blue-sky:    #2196f3;
+    --blue-glow:   #42a5f5;
+    --blue-bright: #4fc3f7;
+    --cyan:        #00e5ff;
+    --cyan-soft:   #80deea;
+    --white:       #f0f6ff;
+    --muted:       #7fa8cc;
+    --card-bg:     rgba(6,21,37,0.7);
+    --border:      rgba(33,150,243,0.18);
+    --border-h:    rgba(0,229,255,0.45);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ═══════════════════════════════
+     BACKGROUND SYSTEM
+  ═══════════════════════════════ */
+
+  /* Deep mesh base */
+  .bg-mesh {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 55% 45% at 15% 25%, rgba(21,101,192,0.2) 0%, transparent 55%),
+      radial-gradient(ellipse 45% 55% at 85% 75%, rgba(0,180,255,0.08) 0%, transparent 55%),
+      radial-gradient(ellipse 65% 35% at 50% 95%, rgba(57,73,171,0.15) 0%, transparent 55%),
+      #020b18;
+  }
+
+  /* Slow drifting orbs */
+  .orb {
+    position: fixed; border-radius: 50%;
+    filter: blur(100px); pointer-events: none; z-index: 0;
+  }
+  .orb-1 {
+    width: 750px; height: 750px;
+    background: radial-gradient(circle, rgba(21,101,192,0.28) 0%, transparent 65%);
+    top: -280px; left: -220px;
+    animation: orbFloat1 24s ease-in-out infinite alternate;
+  }
+  .orb-2 {
+    width: 520px; height: 520px;
+    background: radial-gradient(circle, rgba(0,229,255,0.09) 0%, transparent 65%);
+    bottom: -180px; right: -130px;
+    animation: orbFloat2 30s ease-in-out infinite alternate;
+  }
+  .orb-3 {
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(57,73,171,0.18) 0%, transparent 65%);
+    top: 45%; left: 58%;
+    animation: orbFloat3 20s ease-in-out infinite alternate;
+  }
+  @keyframes orbFloat1 {
+    0%   { transform: translate(0,0) scale(1); }
+    40%  { transform: translate(55px,-35px) scale(1.1); }
+    100% { transform: translate(-25px,65px) scale(0.94); }
+  }
+  @keyframes orbFloat2 {
+    0%   { transform: translate(0,0) scale(1); }
+    60%  { transform: translate(-45px,-55px) scale(1.13); }
+    100% { transform: translate(28px,38px) scale(0.91); }
+  }
+  @keyframes orbFloat3 {
+    0%   { transform: translate(0,0); }
+    100% { transform: translate(-38px,-28px) scale(1.07); }
+  }
+
+  /* Dot grid */
+  .dot-grid {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(33,150,243,0.055) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+
+  /* ── BUBBLES ── */
+  .bubbles-wrap {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  }
+  .bubble {
+    position: absolute; bottom: -120px;
+    border-radius: 50%;
+    opacity: 0;
+    animation: bubbleRise linear infinite;
+  }
+  /* colour variants */
+  .bubble.v1 { background: radial-gradient(circle at 35% 35%, rgba(79,195,247,0.55), rgba(21,101,192,0.15)); border: 1px solid rgba(79,195,247,0.35); }
+  .bubble.v2 { background: radial-gradient(circle at 35% 35%, rgba(0,229,255,0.4),  rgba(0,150,200,0.1));   border: 1px solid rgba(0,229,255,0.28); }
+  .bubble.v3 { background: radial-gradient(circle at 35% 35%, rgba(33,150,243,0.35), rgba(13,59,110,0.1));   border: 1px solid rgba(33,150,243,0.3); }
+  .bubble.v4 { background: radial-gradient(circle at 35% 35%, rgba(100,181,246,0.3), rgba(21,101,192,0.08)); border: 1px solid rgba(100,181,246,0.22); }
+
+  @keyframes bubbleRise {
+    0%   { transform: translateY(0) translateX(0) scale(0.6);  opacity: 0; }
+    8%   { opacity: 1; }
+    85%  { opacity: 0.55; }
+    100% { transform: translateY(-105vh) translateX(var(--drift)) scale(1); opacity: 0; }
+  }
+
+  /* ── PAGE WRAP ── */
+  .page { position: relative; z-index: 1; }
+  .container { max-width: 1440px; margin: 0 auto; padding: 0 48px; }
+
+  /* ═══════════════════════════════
+     HERO
+  ═══════════════════════════════ */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 120px 24px 80px; text-align: center; position: relative;
+  }
+  .hero__inner { max-width: 1440px; width: 100%; padding: 0 48px; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 20px;
+    background: rgba(21,101,192,0.15);
+    border: 1px solid rgba(33,150,243,0.35);
+    border-radius: 100px;
+    font-size: 13px; letter-spacing: 0.05em; color: var(--cyan-soft);
+    margin-bottom: 36px; backdrop-filter: blur(12px);
+  }
+  .badge-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--cyan); box-shadow: 0 0 10px var(--cyan);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:1; box-shadow: 0 0 10px var(--cyan); }
+    50%      { opacity:0.4; box-shadow: 0 0 4px var(--cyan); }
+  }
+
+  /* Hero title — 3-line stacked editorial */
+  .hero__title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4.8vw, 3.8rem);
+    line-height: 1.18; letter-spacing: -0.01em;
+    margin-bottom: 32px;
+    max-width: 1100px; margin-left: auto; margin-right: auto;
+    text-shadow: 0 0 80px rgba(33,150,243,0.12);
+  }
+  .hero__title .line-1 {
+    display: block; font-weight: 400; font-style: normal;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    font-size: 0.5em; color: var(--cyan-soft); margin-bottom: 10px;
+  }
+  .hero__title .line-2 {
+    display: block; font-weight: 800; letter-spacing: -0.03em;
+    background: linear-gradient(110deg, #4fc3f7 0%, #1976d2 30%, #00e5ff 65%, #81d4fa 100%);
+    background-size: 220% auto;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    animation: shimmerText 4.5s linear infinite;
+    font-size: 1em; line-height: 1.1;
+  }
+  .hero__title .line-3 {
+    display: block; font-weight: 300;
+    color: rgba(240,246,255,0.7);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    font-size: 0.6em; margin-top: 12px;
+  }
+  @keyframes shimmerText {
+    0%   { background-position: 0% center; }
+    100% { background-position: 220% center; }
+  }
+
+  .hero__subtitle {
+    font-size: clamp(1rem, 1.8vw, 1.12rem);
+    font-weight: 300; color: var(--muted);
+    line-height: 1.85; max-width: 900px; margin: 0 auto 48px;
+  }
+  .hl-blue { color: var(--blue-bright); font-weight: 500; }
+  .hl-cyan { color: var(--cyan); font-weight: 500; }
+
+  .hero__btns { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
+
+  /* ══ BUTTON SCHEME A — "Cobalt Pulse" (primary CTA) ══
+     Deep cobalt → dodger blue → electric sky
+     Glow: cobalt blue shadow  */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 14px 34px;
+    background: linear-gradient(130deg, #0d47a1 0%, #1976d2 45%, #039be5 80%, #29b6f6 100%);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 15px;
+    color: #fff; text-decoration: none;
+    box-shadow:
+      0 4px 20px rgba(13,71,161,0.55),
+      0 1px 0 rgba(255,255,255,0.1) inset,
+      0 0 0 1px rgba(41,182,246,0.2);
+    transition: transform 0.22s, box-shadow 0.22s;
+    position: relative; overflow: hidden;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.45s ease;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 36px rgba(3,155,229,0.6), 0 0 0 1px rgba(41,182,246,0.4), inset 0 1px 0 rgba(255,255,255,0.12); }
+  .btn-primary:hover::before { left: 150%; }
+
+  /* ══ BUTTON SCHEME B — "Arctic Outline" (ghost CTA) ══
+     Transparent with icy steel border + teal glow on hover */
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 14px 34px;
+    background: rgba(2,11,24,0.35);
+    border: 1px solid rgba(41,182,246,0.38);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 15px;
+    color: #81d4fa; text-decoration: none;
+    backdrop-filter: blur(12px);
+    transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.22s, box-shadow 0.25s;
+  }
+  .btn-ghost:hover {
+    background: rgba(3,155,229,0.12);
+    border-color: rgba(0,229,255,0.6);
+    color: var(--cyan);
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(0,229,255,0.12);
+  }
+
+  /* Scroll hint */
+  .scroll-hint {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: var(--muted); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    animation: bounceDown 2.4s ease-in-out infinite;
+  }
+  @keyframes bounceDown {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    55%      { transform: translateX(-50%) translateY(9px); }
+  }
+
+  /* ═══════════════════════════════
+     DIVIDER
+  ═══════════════════════════════ */
+  .section-divider {
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(33,150,243,0.3), rgba(0,229,255,0.5), rgba(33,150,243,0.3), transparent);
+  }
+
+  /* ═══════════════════════════════
+     SECTION SHARED
+  ═══════════════════════════════ */
+  .section { padding: 100px 0; }
+  .section__header { text-align: center; max-width: 680px; margin: 0 auto 72px; }
+  .section__eyebrow { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cyan); margin-bottom: 14px; }
+  .section__title { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--white); margin-bottom: 16px; }
+  .section__title .accent { background: linear-gradient(135deg, var(--blue-sky), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .section__desc { color: var(--muted); font-size: 1.05rem; line-height: 1.75; font-weight: 300; }
+  .section__cta { margin-top: 56px; text-align: center; }
+
+  /* ═══════════════════════════════
+     SKILL CARDS
+  ═══════════════════════════════ */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+  .skill-card {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px;
+    padding: 32px 28px; backdrop-filter: blur(16px);
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .skill-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--blue-sky), var(--cyan), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .skill-card:hover { transform: translateY(-6px); border-color: var(--border-h); box-shadow: 0 20px 48px rgba(0,229,255,0.08); }
+  .skill-card:hover::before { opacity: 1; }
+  .skill-card__icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+  .icon-blue { background: rgba(21,101,192,0.25); color: var(--blue-sky); }
+  .icon-cyan  { background: rgba(0,229,255,0.1);  color: var(--cyan); }
+  .skill-card h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; color: var(--white); }
+  .skill-card p  { color: var(--muted); font-size: 0.9rem; line-height: 1.65; margin-bottom: 20px; font-weight: 300; }
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill { padding: 4px 12px; background: rgba(33,150,243,0.1); border: 1px solid rgba(33,150,243,0.22); border-radius: 100px; font-size: 11.5px; color: var(--cyan-soft); font-weight: 500; letter-spacing: 0.02em; }
+
+  .link-arrow { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--blue-sky), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: gap 0.2s; }
+  .link-arrow:hover { gap: 13px; }
+  .link-arrow svg { color: var(--cyan); flex-shrink: 0; }
+
+  /* ═══════════════════════════════
+     PROJECT CARDS
+  ═══════════════════════════════ */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; }
+  .project-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; backdrop-filter: blur(16px); transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s; }
+  .project-card:hover { transform: translateY(-8px); border-color: rgba(0,229,255,0.4); box-shadow: 0 24px 56px rgba(0,229,255,0.07); }
+  .project-card__img { width: 100%; aspect-ratio: 16/9; overflow: hidden; background: var(--navy-3); position: relative; }
+  .project-card__img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 55%, var(--navy-2) 100%); }
+  .project-card__img img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.45s ease; }
+  .project-card:hover .project-card__img img { transform: scale(1.04); }
+  .project-card__body { padding: 28px; }
+  .project-card__tag { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); margin-bottom: 10px; display: block; }
+  .project-card h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 12px; line-height: 1.4; transition: color 0.2s; }
+  .project-card:hover h3 { color: var(--blue-glow); }
+  .project-card p { color: var(--muted); font-size: 0.88rem; line-height: 1.7; margin-bottom: 20px; font-weight: 300; }
+  .project-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--cyan); text-decoration: none; border: 1px solid rgba(0,229,255,0.25); padding: 6px 14px; border-radius: 8px; transition: background 0.2s, border-color 0.2s; }
+  .project-link:hover { background: rgba(0,229,255,0.08); border-color: rgba(0,229,255,0.5); }
+
+  /* ═══════════════════════════════
+     CTA
+  ═══════════════════════════════ */
+  .cta-section { padding: 100px 24px; text-align: center; position: relative; }
+  .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(21,101,192,0.18) 0%, transparent 70%); pointer-events: none; }
+  .cta-card { max-width: 700px; margin: 0 auto; background: rgba(6,21,37,0.8); border: 1px solid rgba(33,150,243,0.25); border-radius: 24px; padding: 64px 48px; backdrop-filter: blur(20px); box-shadow: 0 0 80px rgba(21,101,192,0.15), inset 0 1px 0 rgba(255,255,255,0.05); position: relative; z-index: 1; }
+  .cta-card h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; color: var(--white); margin-bottom: 16px; }
+  .cta-card p { color: var(--muted); font-size: 1.05rem; margin-bottom: 36px; line-height: 1.7; font-weight: 300; }
+
+  /* ═══════════════════════════════
+     RESPONSIVE
+  ═══════════════════════════════ */
+  @media (max-width: 640px) {
+    .hero { padding: 100px 20px 80px; }
+    .hero__title { font-size: clamp(2.2rem, 10vw, 3.2rem); }
+    .skill-card { padding: 24px 20px; }
+    .cta-card { padding: 44px 28px; }
+  }
+
+  /* ═══════════════════════════════
+     SCROLL REVEAL
+  ═══════════════════════════════ */
+  .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .stagger-1 { transition-delay: 0.1s; }
+  .stagger-2 { transition-delay: 0.2s; }
+  .stagger-3 { transition-delay: 0.3s; }
+  .stagger-4 { transition-delay: 0.4s; }
+`;
+
+/* ─── Bubble config ─── */
+const BUBBLE_CONFIG = [
+  { size: 8,  left: 5,  dur: 14, delay: 0,   drift: "12px",  v: "v1" },
+  { size: 14, left: 12, dur: 18, delay: 2,   drift: "-18px", v: "v2" },
+  { size: 6,  left: 20, dur: 12, delay: 4,   drift: "8px",   v: "v3" },
+  { size: 20, left: 28, dur: 22, delay: 1,   drift: "-22px", v: "v1" },
+  { size: 10, left: 35, dur: 16, delay: 6,   drift: "14px",  v: "v4" },
+  { size: 5,  left: 42, dur: 11, delay: 3,   drift: "-10px", v: "v2" },
+  { size: 16, left: 50, dur: 20, delay: 8,   drift: "20px",  v: "v3" },
+  { size: 9,  left: 58, dur: 15, delay: 0.5, drift: "-14px", v: "v1" },
+  { size: 24, left: 65, dur: 25, delay: 5,   drift: "18px",  v: "v4" },
+  { size: 7,  left: 72, dur: 13, delay: 2.5, drift: "-8px",  v: "v2" },
+  { size: 12, left: 80, dur: 17, delay: 7,   drift: "16px",  v: "v3" },
+  { size: 18, left: 88, dur: 21, delay: 1.5, drift: "-20px", v: "v1" },
+  { size: 6,  left: 93, dur: 10, delay: 9,   drift: "10px",  v: "v4" },
+  { size: 11, left: 96, dur: 19, delay: 3.5, drift: "-12px", v: "v2" },
+  /* second wave — slightly larger, staggered */
+  { size: 15, left: 8,  dur: 23, delay: 11,  drift: "-16px", v: "v3" },
+  { size: 8,  left: 17, dur: 14, delay: 13,  drift: "10px",  v: "v4" },
+  { size: 22, left: 32, dur: 26, delay: 10,  drift: "24px",  v: "v1" },
+  { size: 6,  left: 47, dur: 12, delay: 14,  drift: "-8px",  v: "v2" },
+  { size: 13, left: 63, dur: 18, delay: 12,  drift: "14px",  v: "v3" },
+  { size: 19, left: 78, dur: 24, delay: 15,  drift: "-22px", v: "v4" },
+];
+
+function Bubbles() {
+  return (
+    <div className="bubbles-wrap">
+      {BUBBLE_CONFIG.map((b, i) => (
+        <div
+          key={i}
+          className={`bubble ${b.v}`}
+          style={Object.assign({
+            width: b.size,
+            height: b.size,
+            left: `${b.left}%`,
+            animationDuration: `${b.dur}s`,
+            animationDelay: `${b.delay}s`,
+          }, { "--drift": b.drift })}
+        />
+      ))}
+    </div>
+  );
+}
+
+/* ─── Scroll reveal ─── */
+function useReveal() {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const els = document.querySelectorAll(".fade-up");
+    const io = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }),
+      { threshold: 0.12 }
+    );
+    els.forEach(el => io.observe(el));
+    return () => io.disconnect();
   }, []);
+}
+
+/* ══════════════════════════════════════════════════════════ */
+const Home = () => {
+  useReveal();
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
   return (
-    <main className="relative pt-16 text-white overflow-hidden">
+    <>
+      <style>{styles}</style>
 
-      {/* GLOBAL BACKGROUND (ONLY ONE SYSTEM) */}
-      <div className="fixed inset-0 -z-10 bg-gradient-to-br from-blue-600/20 via-transparent to-cyan-400/20" />
-      <div className="fixed -top-40 -left-40 w-[600px] h-[600px] bg-blue-500/20 blur-[180px] rounded-full -z-10" />
-      <div className="fixed -bottom-40 -right-40 w-[600px] h-[600px] bg-cyan-400/20 blur-[180px] rounded-full -z-10" />
-      <div className="fixed inset-0 -z-10 opacity-[0.03] bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] bg-[length:40px_40px]" />
+      {/* ── Background layers ── */}
+      <div className="bg-mesh" />
+      <div className="orb orb-1" />
+      <div className="orb orb-2" />
+      <div className="orb orb-3" />
+      <div className="dot-grid" />
+      <Bubbles />
 
-      {/* ================= HERO ================= */}
-      <section className="relative min-h-[90vh] flex items-center justify-center py-24">
-        <div className="page-container text-center space-y-8 max-w-5xl mx-auto">
+      <main className="page" style={{ paddingTop: 64 }}>
 
-          <span className="inline-block px-5 py-2 bg-white/5 border border-white/10 rounded-full text-sm backdrop-blur-md">
-            Frontend & eCommerce WordPress Developer
-          </span>
+        {/* ══════════ HERO ══════════ */}
+        <section className="hero">
+          <div className="hero__inner">
 
-          <h1 className="heading-xl font-serif leading-tight">
-            Designing &
-            <span className="bg-gradient-to-r from-brand-purple to-brand-red bg-clip-text text-transparent">
-              {" "}Developing Beautiful
-            </span>{" "}
-            User Interfaces
-          </h1>
+            <div className="badge fade-up visible">
+              <span className="badge-dot" />
+              Frontend &amp; eCommerce WordPress Developer
+            </div>
 
-          <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-            I'm a passionate <span className="font-semibold text-white">Frontend & WordPress Developer</span> specializing in building responsive, user-friendly websites and eCommerce platforms.
+            <h1 className="hero__title fade-up visible" style={{ transitionDelay: "0.1s" }}>
+              <span className="line-1">Designing &amp;</span>
+              <span className="line-2">Developing Beautiful</span>
+              <span className="line-3">User Interfaces</span>
+            </h1>
 
-            I develop modern web interfaces using <span className="text-brand-purple">HTML</span>,
-            <span className="text-brand-purple"> CSS</span>,
-            <span className="text-brand-purple"> JavaScript</span>, and frameworks like
-            <span className="text-brand-purple"> React.js</span>.
-
-            I also build dynamic and scalable websites using
-            <span className="text-brand-red"> WordPress</span>, including custom theme development,
-            <span className="text-brand-red"> WooCommerce</span> store setup, plugin customization, and performance optimization.
-
-            My focus is on <span className="text-brand-purple">clean code</span>,
-            <span className="text-brand-purple">accessibility</span>,
-            <span className="text-brand-purple">SEO optimization</span>, and
-            <span className="text-brand-purple">performance-driven design</span>.
-
-            I convert <span className="text-brand-red">Figma</span> designs into fully functional, responsive websites with pixel-perfect accuracy.
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-5 pt-6">
-            <Link
-              to="/portfolio"
-              className="px-7 py-3 bg-gradient-to-r from-brand-purple to-brand-red rounded-lg font-medium inline-flex items-center gap-2 hover:opacity-90 transition duration-300 shadow-lg"
-            >
-              View My Work <ArrowRight size={18} />
-            </Link>
-
-            <Link
-              to="/contact"
-              className="px-7 py-3 bg-white/5 border border-white/10 rounded-lg font-medium inline-flex items-center gap-2 hover:bg-white/10 transition duration-300"
-            >
-              Contact Me
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= SKILLS ================= */}
-      <section className="relative py-24">
-        <div className="page-container">
-
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-6">
-            <h2 className="heading-lg">
-              My <span className="bg-gradient-to-r from-brand-purple to-brand-red bg-clip-text text-transparent">Technical Expertise</span>
-            </h2>
-            <p className="text-gray-400 text-lg">
-              I build high-performance websites and eCommerce platforms, transforming modern UI designs into scalable, responsive digital experiences.
+            <p className="hero__subtitle fade-up visible" style={{ transitionDelay: "0.2s" }}>
+              I'm a passionate <span className="hl-blue">Frontend &amp; WordPress Developer</span> specializing in responsive, user-friendly websites and eCommerce platforms. I craft modern interfaces with <span className="hl-cyan">HTML, CSS, JavaScript</span>, and <span className="hl-cyan">React.js</span>, and build scalable WordPress solutions including <span className="hl-blue">WooCommerce</span> stores, custom themes, and performance-optimized experiences. Every pixel is intentional.
             </p>
+
+            <div className="hero__btns fade-up visible" style={{ transitionDelay: "0.3s" }}>
+              <Link to="/portfolio" className="btn-primary">
+                View My Work <ArrowRight size={17} />
+              </Link>
+              <Link to="/contact" className="btn-ghost">
+                Contact Me
+              </Link>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-
-            {/* Frontend Development */}
-            <div className="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-brand-purple/40 transition duration-300 hover:-translate-y-2">
-              <div className="text-brand-purple mb-4">
-                <Monitor size={28} />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Frontend Development</h3>
-              <p className="text-gray-400 mb-4">
-                Building modern, interactive user interfaces using React.js and scalable frontend architectures.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="skill-pill">React.js</span>
-                <span className="skill-pill">JavaScript (ES6+)</span>
-                <span className="skill-pill">Tailwind CSS</span>
-                <span className="skill-pill">Responsive Design</span>
-              </div>
-            </div>
-
-            {/* WordPress Development */}
-            <div className="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-brand-purple/40 transition duration-300 hover:-translate-y-2">
-              <div className="text-brand-red mb-4">
-                <Server size={28} />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">WordPress Development</h3>
-              <p className="text-gray-400 mb-4">
-                Developing custom themes, dynamic CMS solutions, and scalable WordPress websites.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="skill-pill">Custom Themes</span>
-                <span className="skill-pill">Plugin Customization</span>
-                <span className="skill-pill">ACF</span>
-                <span className="skill-pill">Performance Optimization</span>
-              </div>
-            </div>
-
-            {/* WooCommerce Development */}
-            <div className="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-brand-red/40 transition duration-300 hover:-translate-y-2">
-              <div className="text-brand-purple mb-4">
-                <Layers size={28} />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">WooCommerce Development</h3>
-              <p className="text-gray-400 mb-4">
-                Creating secure, conversion-focused online stores with seamless checkout experiences.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="skill-pill">Store Setup</span>
-                <span className="skill-pill">Payment Integration</span>
-                <span className="skill-pill">Product Optimization</span>
-                <span className="skill-pill">Speed Optimization</span>
-              </div>
-            </div>
-
-            {/* Figma to Website */}
-            <div className="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-brand-red/40 transition duration-300 hover:-translate-y-2">
-              <div className="text-brand-red mb-4">
-                <Monitor size={28} />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Figma to Website</h3>
-              <p className="text-gray-400 mb-4">
-                Converting Figma designs into pixel-perfect, fully responsive websites with clean code.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="skill-pill">Pixel Perfect</span>
-                <span className="skill-pill">Cross-Browser</span>
-                <span className="skill-pill">Mobile First</span>
-                <span className="skill-pill">SEO Friendly</span>
-              </div>
-            </div>
-
+          <div className="scroll-hint">
+            <span>Scroll</span>
+            <ChevronDown size={15} />
           </div>
+        </section>
 
-          <div className="mt-14 text-center">
-            <Link
-              to="/about"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-brand-purple to-brand-red bg-clip-text text-transparent font-semibold hover:opacity-80 transition"
-            >
-              Learn more about my skills <ArrowRight size={16} />
+        <div className="section-divider" />
+
+        {/* ══════════ SKILLS ══════════ */}
+        <section className="section">
+          <div className="container">
+            <div className="section__header fade-up">
+              <span className="section__eyebrow">What I do</span>
+              <h2 className="section__title">My <span className="accent">Technical Expertise</span></h2>
+              <p className="section__desc">I build high-performance websites and eCommerce platforms, transforming modern UI designs into scalable, responsive digital experiences.</p>
+            </div>
+
+            <div className="skills-grid">
+              <div className="skill-card fade-up stagger-1">
+                <div className="skill-card__icon icon-blue"><Monitor size={22} /></div>
+                <h3>Frontend Development</h3>
+                <p>Building modern, interactive user interfaces using React.js and scalable frontend architectures.</p>
+                <div className="pills">
+                  <span className="pill">React.js</span>
+                  <span className="pill">JavaScript ES6+</span>
+                  <span className="pill">Tailwind CSS</span>
+                  <span className="pill">Responsive Design</span>
+                </div>
+              </div>
+
+              <div className="skill-card fade-up stagger-2">
+                <div className="skill-card__icon icon-cyan"><Server size={22} /></div>
+                <h3>WordPress Development</h3>
+                <p>Developing custom themes, dynamic CMS solutions, and scalable WordPress websites.</p>
+                <div className="pills">
+                  <span className="pill">Custom Themes</span>
+                  <span className="pill">Plugin Customization</span>
+                  <span className="pill">ACF</span>
+                  <span className="pill">Performance Opt.</span>
+                </div>
+              </div>
+
+              <div className="skill-card fade-up stagger-3">
+                <div className="skill-card__icon icon-blue"><Layers size={22} /></div>
+                <h3>WooCommerce Development</h3>
+                <p>Creating secure, conversion-focused online stores with seamless checkout experiences.</p>
+                <div className="pills">
+                  <span className="pill">Store Setup</span>
+                  <span className="pill">Payment Integration</span>
+                  <span className="pill">Product Optimization</span>
+                  <span className="pill">Speed Optimization</span>
+                </div>
+              </div>
+
+              <div className="skill-card fade-up stagger-4">
+                <div className="skill-card__icon icon-cyan"><Code2 size={22} /></div>
+                <h3>Figma to Website</h3>
+                <p>Converting Figma designs into pixel-perfect, fully responsive websites with clean code.</p>
+                <div className="pills">
+                  <span className="pill">Pixel Perfect</span>
+                  <span className="pill">Cross-Browser</span>
+                  <span className="pill">Mobile First</span>
+                  <span className="pill">SEO Friendly</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="section__cta fade-up">
+              <Link to="/about" className="link-arrow">
+                Learn more about my skills <ArrowRight size={16} />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <div className="section-divider" />
+
+        {/* ══════════ PROJECTS ══════════ */}
+        <section className="section">
+          <div className="container">
+            <div className="section__header fade-up">
+              <span className="section__eyebrow">Selected Work</span>
+              <h2 className="section__title">Featured <span className="accent">Projects</span></h2>
+              <p className="section__desc">A showcase of recent work demonstrating clean UI design and deep technical expertise.</p>
+            </div>
+
+            <div className="projects-grid">
+              <div className="project-card fade-up stagger-1">
+                <div className="project-card__img">
+                  <img src="/Home.png" alt="FYP Project Management System" />
+                </div>
+                <div className="project-card__body">
+                  <span className="project-card__tag">React.js · Full-Stack</span>
+                  <h3>Project Allocation &amp; Evaluation — NCEAC Rules</h3>
+                  <p>A centralized final-year project management system with secure RBAC, automated supervisor allocation, and structured evaluation workflows. Improves transparency and accreditation compliance.</p>
+                  <a href="https://fypproject-rho.vercel.app/" target="_blank" rel="noopener noreferrer" className="project-link">
+                    <ExternalLink size={13} /> View Frontend Demo
+                  </a>
+                </div>
+              </div>
+
+              <div className="project-card fade-up stagger-2">
+                <div className="project-card__img">
+                  <img src="/nature-home.png" alt="Nature True Green Landscaping" />
+                </div>
+                <div className="project-card__body">
+                  <span className="project-card__tag">WordPress · WooCommerce</span>
+                  <h3>Nature True Green Landscaping — Website Development</h3>
+                  <p>Fully responsive, performance-optimized business website with SEO best practices, structured service architecture, and WhatsApp API integration for lead generation.</p>
+                  <a href="https://naturetruegreenlandscaping.com/" target="_blank" rel="noopener noreferrer" className="project-link">
+                    <ExternalLink size={13} /> View Live Site
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="section__cta fade-up">
+              <Link to="/portfolio" className="btn-primary" style={{ textDecoration: "none" }}>
+                View All Projects <ArrowRight size={17} />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ══════════ CTA ══════════ */}
+        <section className="cta-section">
+          <div className="cta-card fade-up">
+            <Sparkles size={32} style={{ color: "var(--cyan)", margin: "0 auto 20px", display: "block" }} />
+            <h2>Ready to Start Your Project?</h2>
+            <p>Let's build something modern, fast, and high-performing together.</p>
+            <Link to="/contact" className="btn-primary" style={{ textDecoration: "none" }}>
+              Get in Touch <ArrowRight size={17} />
             </Link>
           </div>
+        </section>
 
-
-
-        </div>
-      </section>
-
-      {/* ================= PROJECTS ================= */}
-      <section className="relative py-24">
-        <div className="page-container">
-
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-6">
-
-            <h2 className="heading-lg">
-              Featured <span className="bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">Projects</span>
-            </h2>
-            <p className="text-gray-400 text-lg">
-              A showcase of my recent work demonstrating clean UI and technical expertise.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-
-            <div className="group rounded-2xl overflow-hidden bg-white/5 backdrop-blur-md border border-white/10 hover:border-cyan-400/40 transition duration-300 hover:-translate-y-2">
-              <img
-                src="/Home.png"
-                alt="Industrial Project"
-                className="w-full aspect-video object-contain bg-black transition group-hover:scale-105"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-3 group-hover:text-cyan-400 transition">
-                  Project Allocation & Evaluation According to NCEAC Rules
-                </h3>
-                <p className="text-gray-400 mb-4">
-                  A centralized final-year project management system with secure RBAC, automated supervisor allocation, and structured evaluation workflows.
-                  Designed to improve transparency, efficiency, and compliance with accreditation standards.<br />
-                  (Frontend prototype deployed & Backend architecture implemented locally.)          </p>
-                <a
-                  href="https://fypproject-rho.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-cyan-400 font-medium hover:underline"
-                >
-                  🔗 View Frontend Demo
-                </a>
-              </div>
-            </div>
-
-            <div className="group rounded-2xl overflow-hidden bg-white/5 backdrop-blur-md border border-white/10 hover:border-cyan-400/40 transition duration-300 hover:-translate-y-2">
-              <img
-                src="/nature-home.png"
-                alt="Industrial Project"
-                className="w-full aspect-video object-contain bg-black transition group-hover:scale-105"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-3 group-hover:text-cyan-400 transition">
-
-                  Nature True Green Landscaping – Website Development Project                </h3>
-                <p className="text-gray-400 mb-4">
-                  Built a fully responsive, performance-optimized business website using modern frontend technologies, implementing SEO best practices, structured service architecture, and WhatsApp API integration to drive lead generation and user engagement.                         </p>
-                <a
-                  href="https://naturetruegreenlandscaping.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-cyan-400 font-medium hover:underline"
-                >
-                  🔗 View Live Demo
-                </a>
-              </div>
-            </div>
-
-          </div>
-
-          <div className="mt-14 text-center">
-            <Link
-              to="/portfolio"
-              className="px-7 py-3 bg-gradient-to-r from-brand-purple to-brand-red rounded-lg font-medium inline-flex items-center gap-2 hover:opacity-90 transition duration-300 shadow-lg"
-            >
-              View All Projects <ArrowRight size={18} />
-            </Link>
-          </div>
-
-        </div>
-      </section>
-
-      {/* ================= CTA ================= */}
-      <section className="relative py-24 text-center">
-        <div className="max-w-3xl mx-auto space-y-6">
-          <h2 className="text-3xl md:text-4xl font-bold">
-            Ready to Start Your Project?
-          </h2>
-          <p className="text-gray-400 text-lg">
-            Let’s build something modern and high-performing together.
-          </p>
-          <Link
-            to="/contact"
-            className="px-7 py-3 bg-gradient-to-r from-brand-purple to-brand-red rounded-lg font-medium inline-flex items-center gap-2 hover:opacity-90 transition duration-300 shadow-lg"
-          >
-            Get in Touch <ArrowRight size={18} />
-          </Link>
-        </div>
-      </section>
-
-    </main>
+      </main>
+    </>
   );
 };
 
