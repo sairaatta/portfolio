@@ -194,14 +194,14 @@ const styles = `
 `;
 
 const BUBBLES = [
-  { size: 8,  left: 5,  dur: 14, delay: 0,   v: "v1" },
-  { size: 14, left: 15, dur: 18, delay: 2,   v: "v2" },
-  { size: 6,  left: 27, dur: 12, delay: 4,   v: "v3" },
-  { size: 18, left: 40, dur: 22, delay: 1,   v: "v1" },
-  { size: 10, left: 55, dur: 16, delay: 6,   v: "v2" },
-  { size: 16, left: 67, dur: 20, delay: 8,   v: "v3" },
-  { size: 9,  left: 78, dur: 15, delay: 0.5, v: "v1" },
-  { size: 20, left: 88, dur: 25, delay: 5,   v: "v2" },
+  { size: 8, left: 5, dur: 14, delay: 0, v: "v1" },
+  { size: 14, left: 15, dur: 18, delay: 2, v: "v2" },
+  { size: 6, left: 27, dur: 12, delay: 4, v: "v3" },
+  { size: 18, left: 40, dur: 22, delay: 1, v: "v1" },
+  { size: 10, left: 55, dur: 16, delay: 6, v: "v2" },
+  { size: 16, left: 67, dur: 20, delay: 8, v: "v3" },
+  { size: 9, left: 78, dur: 15, delay: 0.5, v: "v1" },
+  { size: 20, left: 88, dur: 25, delay: 5, v: "v2" },
 ];
 
 function useReveal() {
@@ -258,9 +258,10 @@ const Resume = () => {
             </p>
 
             <div className="fade-up visible" style={{ transitionDelay: "0.3s", display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-              <a href="/RESUME_SAIRA_ATTA.pdf" download="RESUME_SAIRA_ATTA.pdf"className="btn-primary">
+              <a href="/RESUME_SAIRA_ATTA.pdf" download="RESUME_SAIRA_ATTA.pdf" className="btn-primary">
                 Download Resume <Download size={17} />
               </a>
+
               <Link to="/contact" className="btn-ghost">Contact Me</Link>
             </div>
 
@@ -296,7 +297,7 @@ const Resume = () => {
                 <div className="rv-skill-group">
                   <h4>Frontend Development</h4>
                   <div className="rv-pills">
-                    {["HTML5","CSS3","JavaScript","React.js","Tailwind CSS","Bootstrap","Responsive Design"].map(s => (
+                    {["HTML5", "CSS3", "JavaScript", "React.js", "Tailwind CSS", "Bootstrap", "Responsive Design"].map(s => (
                       <span key={s} className="rv-pill">{s}</span>
                     ))}
                   </div>
@@ -305,7 +306,7 @@ const Resume = () => {
                 <div className="rv-skill-group">
                   <h4>WordPress &amp; WooCommerce</h4>
                   <div className="rv-pills">
-                    {["WordPress","WooCommerce","Elementor Pro","Theme Customization","Plugin Integration","Payment Gateway Setup","Performance Optimization","On-Page SEO"].map(s => (
+                    {["WordPress", "WooCommerce", "Elementor Pro", "Theme Customization", "Plugin Integration", "Payment Gateway Setup", "Performance Optimization", "On-Page SEO"].map(s => (
                       <span key={s} className="rv-pill">{s}</span>
                     ))}
                   </div>
@@ -314,7 +315,7 @@ const Resume = () => {
                 <div className="rv-skill-group">
                   <h4>Tools &amp; Technologies</h4>
                   <div className="rv-pills">
-                    {["Git","GitHub","Figma","Vite","VS Code","cPanel"].map(s => (
+                    {["Git", "GitHub", "Figma", "Vite", "VS Code", "cPanel"].map(s => (
                       <span key={s} className="rv-pill">{s}</span>
                     ))}
                   </div>
@@ -341,7 +342,7 @@ const Resume = () => {
                       <li>Converted Figma mockups into fully functional, responsive WordPress websites.</li>
                     </ul>
                     <div className="rv-pills">
-                      {["WordPress","WooCommerce","Elementor Pro","Theme Customization","SEO","cPanel"].map(t => (
+                      {["WordPress", "WooCommerce", "Elementor Pro", "Theme Customization", "SEO", "cPanel"].map(t => (
                         <span key={t} className="rv-pill">{t}</span>
                       ))}
                     </div>
@@ -360,7 +361,7 @@ const Resume = () => {
                       <li>Optimized state management using Redux and React hooks.</li>
                     </ul>
                     <div className="rv-pills">
-                      {["React.js","JavaScript","Tailwind CSS","Redux","REST APIs"].map(t => (
+                      {["React.js", "JavaScript", "Tailwind CSS", "Redux", "REST APIs"].map(t => (
                         <span key={t} className="rv-pill">{t}</span>
                       ))}
                     </div>
@@ -378,7 +379,7 @@ const Resume = () => {
                       <li>Created modular UI components and performed cross-browser testing.</li>
                     </ul>
                     <div className="rv-pills">
-                      {["React.js","JavaScript","Tailwind CSS","REST API"].map(t => (
+                      {["React.js", "JavaScript", "Tailwind CSS", "REST API"].map(t => (
                         <span key={t} className="rv-pill">{t}</span>
                       ))}
                     </div>
@@ -396,7 +397,7 @@ const Resume = () => {
                       <li>Participated in daily stand-ups, sprint planning, and code reviews.</li>
                     </ul>
                     <div className="rv-pills">
-                      {["React.js","JavaScript","HTML","CSS"].map(t => (
+                      {["React.js", "JavaScript", "HTML", "CSS"].map(t => (
                         <span key={t} className="rv-pill">{t}</span>
                       ))}
                     </div>
