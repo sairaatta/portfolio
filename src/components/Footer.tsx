@@ -176,7 +176,7 @@ const Footer = () => {
               <div className="ft-col-heading">Connect</div>
 
               <a href="mailto:sairaatta098@gmail.com" className="ft-connect-email" style={{ display: 'flex' }}>
-                <Mail size={15} /> sairaatta098@gmail.com
+                <Mail size={15} /> sairaatta.tech@gmail.com
               </a>
 
               <div className="ft-socials">
@@ -186,7 +186,7 @@ const Footer = () => {
                 <a href="https://www.linkedin.com/in/sairaatta/" target="_blank" rel="noopener noreferrer" className="ft-social" aria-label="LinkedIn">
                   <Linkedin size={16} />
                 </a>
-                <a href="mailto:sairaatta098@gmail.com" className="ft-social" aria-label="Email">
+                <a href="mailto:sairaatta.tech@gmail.com" className="ft-social" aria-label="Email">
                   <Mail size={16} />
                 </a>
               </div>

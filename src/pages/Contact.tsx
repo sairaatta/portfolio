@@ -336,7 +336,7 @@ const Contact = () => {
                     <div className="ct-info-icon"><Mail size={18} /></div>
                     <div>
                       <h3>Email</h3>
-                      <p>sairaatta098@gmail.com</p>
+                      <p>sairaatta.tech@gmail.com</p>
                     </div>
                   </div>
                 </div>
@@ -349,7 +349,7 @@ const Contact = () => {
                   <a href="https://www.linkedin.com/in/sairaatta/" target="_blank" rel="noopener noreferrer" className="ct-social" aria-label="LinkedIn">
                     <Linkedin size={18} />
                   </a>
-                  <a href="mailto:sairaatta098@gmail.com" className="ct-social" aria-label="Email">
+                  <a href="mailto:sairaatta.tech@gmail.com" className="ct-social" aria-label="Email">
                     <Mail size={18} />
                   </a>
                 </div>

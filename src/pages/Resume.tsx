@@ -283,7 +283,7 @@ const Resume = () => {
               <div className="rv-profile__role">Frontend &amp; WordPress WooCommerce Developer</div>
               <div className="rv-profile__meta">
                 <span className="rv-profile__meta-item"><MapPin size={15} /> Pakistan</span>
-                <span className="rv-profile__meta-item"><FileText size={15} /> sairaatta098@gmail.com</span>
+                <span className="rv-profile__meta-item"><FileText size={15} /> sairaatta.tech@gmail.com</span>
               </div>
               <p className="rv-profile__bio">
                 Frontend and WordPress WooCommerce Developer with 2 years of experience building responsive, performance-optimized, and conversion-focused websites. I specialize in creating modern user interfaces, developing custom WordPress solutions, and building eCommerce stores that enhance user experience and drive business growth.
