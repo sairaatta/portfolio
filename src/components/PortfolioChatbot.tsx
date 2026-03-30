@@ -13,6 +13,7 @@ import { useState, useRef, useEffect, KeyboardEvent } from "react";
 // ============================================================
 
 const API_KEY: string = import.meta.env.VITE_GROQ_API_KEY ?? "";
+
 console.log("API KEY:", API_KEY);
 const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 
