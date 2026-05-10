@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Server, Layers, Monitor, Code2, Sparkles, ExternalLink, ChevronDown } from "lucide-react";
+import { ArrowRight, Server, Layers, Monitor, Code2, Sparkles, ExternalLink, ChevronDown, Globe } from "lucide-react";
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
@@ -94,7 +94,6 @@ const styles = `
   /* ── Hero title — fully responsive ── */
   .hero__title {
     font-family: 'Syne', sans-serif;
-    /* scales smoothly from 2.2rem on tiny phones up to 3.8rem on desktop */
     font-size: clamp(2.2rem, 5.5vw, 3.8rem);
     line-height: 1.18; letter-spacing: -0.01em;
     margin-bottom: 32px;
@@ -104,7 +103,6 @@ const styles = `
   .hero__title .line-1 {
     display: block; font-weight: 400; font-style: normal;
     letter-spacing: 0.12em; text-transform: uppercase;
-    /* scales relative to parent font-size */
     font-size: clamp(0.75rem, 1.8vw, 1em);
     color: var(--cyan-soft); margin-bottom: 10px;
   }
@@ -114,7 +112,6 @@ const styles = `
     background-size: 220% auto;
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     animation: shimmerText 4.5s linear infinite;
-    /* biggest line — uses the parent clamp directly */
     font-size: 1em; line-height: 1.1;
     word-break: break-word;
   }
@@ -177,6 +174,30 @@ const styles = `
 
   /* ═══ SKILL CARDS ═══ */
   .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+
+  /* 5-card layout: 3+2 on large screens */
+  @media (min-width: 1100px) {
+    .skills-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .skill-card:nth-child(4) {
+      grid-column: 1 / 2;
+      margin-left: calc(50% + 12px);
+    }
+    .skill-card:nth-child(5) {
+      grid-column: 2 / 3;
+      margin-left: 0;
+    }
+    /* Reset for 4th and 5th to sit centered as a pair */
+    .skills-grid-row2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: calc(66.66% - 8px);
+      margin: 0 auto;
+    }
+  }
+
   .skill-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; padding: 32px 28px; backdrop-filter: blur(16px); transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; position: relative; overflow: hidden; }
   .skill-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--blue-sky), var(--cyan), transparent); opacity: 0; transition: opacity 0.3s; }
   .skill-card:hover { transform: translateY(-6px); border-color: var(--border-h); box-shadow: 0 20px 48px rgba(0,229,255,0.08); }
@@ -184,6 +205,7 @@ const styles = `
   .skill-card__icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
   .icon-blue { background: rgba(21,101,192,0.25); color: var(--blue-sky); }
   .icon-cyan  { background: rgba(0,229,255,0.1);  color: var(--cyan); }
+  .icon-webflow { background: rgba(0,180,216,0.15); color: #4fc3f7; }
   .skill-card h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 12px; color: var(--white); }
   .skill-card p  { color: var(--muted); font-size: 0.88rem; line-height: 1.65; margin-bottom: 20px; font-weight: 300; }
   .pills { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -223,85 +245,60 @@ const styles = `
   .stagger-2 { transition-delay: 0.2s; }
   .stagger-3 { transition-delay: 0.3s; }
   .stagger-4 { transition-delay: 0.4s; }
+  .stagger-5 { transition-delay: 0.5s; }
 
   /* ═══════════════════════════════
      RESPONSIVE BREAKPOINTS
   ═══════════════════════════════ */
 
-  /* Tablet: 481px – 768px */
   @media (max-width: 768px) {
     .container { padding: 0 24px; }
     .hero__inner { padding: 0 20px; }
-
     .hero { padding: 100px 16px 80px; }
     .hero__title { font-size: clamp(2rem, 8vw, 3rem); }
-
     .badge { font-size: 12px; padding: 6px 16px; }
-
     .hero__subtitle { font-size: 0.95rem; margin-bottom: 36px; }
-
     .btn-primary, .btn-ghost { padding: 12px 26px; font-size: 14px; }
-
     .section { padding: 72px 0; }
     .section__header { margin-bottom: 48px; }
     .section__title { font-size: clamp(1.6rem, 5vw, 2.2rem); }
-
     .skills-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
     .skill-card { padding: 24px 18px; }
-
     .projects-grid { grid-template-columns: 1fr; }
-
     .cta-card { padding: 40px 28px; }
     .cta-section { padding: 72px 16px; }
   }
 
-  /* Mobile: up to 480px */
   @media (max-width: 480px) {
     .container { padding: 0 16px; }
     .hero__inner { padding: 0 16px; }
-
     .hero { padding: 96px 12px 72px; min-height: auto; }
-
-    /* The key fix: shrink the title enough so "Developing Beautiful" fits on one line */
-    .hero__title {
-      font-size: clamp(1.55rem, 7.5vw, 2.2rem);
-      margin-bottom: 24px;
-    }
+    .hero__title { font-size: clamp(1.55rem, 7.5vw, 2.2rem); margin-bottom: 24px; }
     .hero__title .line-1 { font-size: clamp(0.6rem, 3vw, 0.75rem); margin-bottom: 8px; letter-spacing: 0.1em; }
     .hero__title .line-2 { font-size: 1em; letter-spacing: -0.02em; }
     .hero__title .line-3 { font-size: clamp(0.55rem, 2.8vw, 0.7em); margin-top: 10px; }
-
     .badge { font-size: 11px; padding: 5px 14px; gap: 6px; margin-bottom: 24px; }
     .badge-dot { width: 6px; height: 6px; }
-
     .hero__subtitle { font-size: 0.88rem; line-height: 1.75; margin-bottom: 28px; }
-
     .hero__btns { gap: 12px; }
     .btn-primary, .btn-ghost { padding: 11px 22px; font-size: 13.5px; width: 100%; justify-content: center; }
-
     .scroll-hint { display: none; }
-
     .section { padding: 56px 0; }
     .section__header { margin-bottom: 36px; padding: 0 4px; }
     .section__title { font-size: clamp(1.4rem, 6vw, 1.9rem); }
     .section__desc { font-size: 0.9rem; }
-
-    /* Single column on small phones */
     .skills-grid { grid-template-columns: 1fr; gap: 14px; }
     .skill-card { padding: 22px 18px; }
     .skill-card h3 { font-size: 1rem; }
     .skill-card__icon { width: 42px; height: 42px; }
-
     .projects-grid { grid-template-columns: 1fr; gap: 18px; }
     .project-card__body { padding: 20px 18px; }
     .project-card h3 { font-size: 0.95rem; }
-
     .cta-card { padding: 36px 20px; border-radius: 18px; }
     .cta-card h2 { font-size: clamp(1.3rem, 5.5vw, 1.8rem); }
     .cta-section { padding: 56px 12px; }
   }
 
-  /* Very small phones: 360px and below */
   @media (max-width: 360px) {
     .hero__title { font-size: clamp(1.35rem, 7vw, 1.9rem); }
     .hero__title .line-1 { letter-spacing: 0.08em; }
@@ -385,7 +382,7 @@ const Home = () => {
 
             <div className="badge fade-up visible">
               <span className="badge-dot" />
-              Frontend &amp; eCommerce WordPress Developer
+              Frontend · WordPress · Webflow · eCommerce Developer
             </div>
 
             <h1 className="hero__title fade-up visible" style={{ transitionDelay: "0.1s" }}>
@@ -395,7 +392,7 @@ const Home = () => {
             </h1>
 
             <p className="hero__subtitle fade-up visible" style={{ transitionDelay: "0.2s" }}>
-              I'm a passionate <span className="hl-blue">Frontend &amp; WordPress Developer</span> specializing in responsive, user-friendly websites and eCommerce platforms. I craft modern interfaces with <span className="hl-cyan">HTML, CSS, JavaScript</span>, and <span className="hl-cyan">React.js</span>, and build scalable WordPress solutions including <span className="hl-blue">WooCommerce</span> stores, custom themes, and performance-optimized experiences. Every pixel is intentional.
+              I'm a passionate <span className="hl-blue">Frontend, WordPress &amp; Webflow Developer</span> specializing in responsive, user-friendly websites and eCommerce platforms. I craft modern interfaces with <span className="hl-cyan">HTML, CSS, JavaScript</span>, and <span className="hl-cyan">React.js</span>, build scalable WordPress &amp; <span className="hl-blue">WooCommerce</span> solutions, and deliver polished <span className="hl-cyan">Webflow</span> experiences — from custom animations to CMS-driven sites. Every pixel is intentional.
             </p>
 
             <div className="hero__btns fade-up visible" style={{ transitionDelay: "0.3s" }}>
@@ -425,7 +422,8 @@ const Home = () => {
               <p className="section__desc">I build high-performance websites and eCommerce platforms, transforming modern UI designs into scalable, responsive digital experiences.</p>
             </div>
 
-            <div className="skills-grid">
+            {/* Row 1 — 3 cards */}
+            <div className="skills-grid" style={{ marginBottom: 24 }}>
               <div className="skill-card fade-up stagger-1">
                 <div className="skill-card__icon icon-blue"><Monitor size={22} /></div>
                 <h3>Frontend Development</h3>
@@ -461,7 +459,10 @@ const Home = () => {
                   <span className="pill">Speed Optimization</span>
                 </div>
               </div>
+            </div>
 
+            {/* Row 2 — 2 cards centered */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 24, maxWidth: 760, margin: "0 auto" }}>
               <div className="skill-card fade-up stagger-4">
                 <div className="skill-card__icon icon-cyan"><Code2 size={22} /></div>
                 <h3>Figma to Website</h3>
@@ -471,6 +472,20 @@ const Home = () => {
                   <span className="pill">Cross-Browser</span>
                   <span className="pill">Mobile First</span>
                   <span className="pill">SEO Friendly</span>
+                </div>
+              </div>
+
+              {/* ── NEW: Webflow Card ── */}
+              <div className="skill-card fade-up stagger-5">
+                <div className="skill-card__icon icon-webflow"><Globe size={22} /></div>
+                <h3>Webflow Development</h3>
+                <p>Designing and building visually rich, CMS-powered Webflow sites with custom interactions, animations, and no-code logic that's fully client-editable.</p>
+                <div className="pills">
+                  <span className="pill">Webflow CMS</span>
+                  <span className="pill">Interactions</span>
+                  <span className="pill">Custom Animations</span>
+                  <span className="pill">Ecommerce</span>
+                  <span className="pill">Figma → Webflow</span>
                 </div>
               </div>
             </div>

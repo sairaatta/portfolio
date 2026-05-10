@@ -22,15 +22,7 @@ const styles = `
     --border-h:    rgba(0,229,255,0.45);
   }
 
-  /* ═══ BACKGROUND ═══ */
-  .rv-bg-mesh {
-    position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    background:
-      radial-gradient(ellipse 55% 45% at 15% 25%, rgba(21,101,192,0.2) 0%, transparent 55%),
-      radial-gradient(ellipse 45% 55% at 85% 75%, rgba(0,180,255,0.08) 0%, transparent 55%),
-      radial-gradient(ellipse 65% 35% at 50% 95%, rgba(57,73,171,0.15) 0%, transparent 55%),
-      #020b18;
-  }
+  .rv-bg-mesh { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse 55% 45% at 15% 25%, rgba(21,101,192,0.2) 0%, transparent 55%), radial-gradient(ellipse 45% 55% at 85% 75%, rgba(0,180,255,0.08) 0%, transparent 55%), radial-gradient(ellipse 65% 35% at 50% 95%, rgba(57,73,171,0.15) 0%, transparent 55%), #020b18; }
   .rv-orb { position: fixed; border-radius: 50%; filter: blur(100px); pointer-events: none; z-index: 0; }
   .rv-orb-1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(21,101,192,0.26) 0%, transparent 65%); top: -250px; left: -200px; animation: rvOrb1 24s ease-in-out infinite alternate; }
   .rv-orb-2 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(0,229,255,0.09) 0%, transparent 65%); bottom: -160px; right: -120px; animation: rvOrb2 30s ease-in-out infinite alternate; }
@@ -39,138 +31,71 @@ const styles = `
   @keyframes rvOrb2 { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(-40px,45px) scale(0.93); } }
   @keyframes rvOrb3 { 0% { transform: translate(0,0); } 100% { transform: translate(-35px,-25px) scale(1.06); } }
 
-  .rv-dot-grid {
-    position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    background-image: radial-gradient(rgba(33,150,243,0.055) 1px, transparent 1px);
-    background-size: 36px 36px;
-  }
+  .rv-dot-grid { position: fixed; inset: 0; z-index: 0; pointer-events: none; background-image: radial-gradient(rgba(33,150,243,0.055) 1px, transparent 1px); background-size: 36px 36px; }
 
-  /* Bubbles */
   .rv-bubbles { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
   .rv-bubble { position: absolute; bottom: -100px; border-radius: 50%; opacity: 0; animation: rvBubble linear infinite; }
   .rv-bubble.v1 { background: radial-gradient(circle at 35% 35%, rgba(79,195,247,0.5), rgba(21,101,192,0.12)); border: 1px solid rgba(79,195,247,0.3); }
   .rv-bubble.v2 { background: radial-gradient(circle at 35% 35%, rgba(0,229,255,0.35), rgba(0,150,200,0.08)); border: 1px solid rgba(0,229,255,0.24); }
   .rv-bubble.v3 { background: radial-gradient(circle at 35% 35%, rgba(33,150,243,0.3), rgba(13,59,110,0.08)); border: 1px solid rgba(33,150,243,0.25); }
-  @keyframes rvBubble {
-    0%   { transform: translateY(0) scale(0.6); opacity: 0; }
-    8%   { opacity: 0.9; }
-    85%  { opacity: 0.45; }
-    100% { transform: translateY(-105vh) scale(1); opacity: 0; }
-  }
+  @keyframes rvBubble { 0% { transform: translateY(0) scale(0.6); opacity: 0; } 8% { opacity: 0.9; } 85% { opacity: 0.45; } 100% { transform: translateY(-105vh) scale(1); opacity: 0; } }
 
-  /* ═══ PAGE ═══ */
   .rv-page { position: relative; z-index: 1; padding-top: 68px; color: var(--white); font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
   .rv-container { max-width: 1440px; margin: 0 auto; padding: 0 48px; }
   .rv-divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(33,150,243,0.3), rgba(0,229,255,0.5), rgba(33,150,243,0.3), transparent); }
 
-  /* ═══ HERO ═══ */
   .rv-hero { padding: 100px 24px 80px; text-align: center; }
   .rv-hero__inner { max-width: 860px; margin: 0 auto; }
 
-  .rv-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 7px 20px; background: rgba(21,101,192,0.15);
-    border: 1px solid rgba(33,150,243,0.35); border-radius: 100px;
-    font-size: 13px; letter-spacing: 0.05em; color: var(--cyan-soft);
-    margin-bottom: 36px; backdrop-filter: blur(12px);
-  }
+  .rv-badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 20px; background: rgba(21,101,192,0.15); border: 1px solid rgba(33,150,243,0.35); border-radius: 100px; font-size: 13px; letter-spacing: 0.05em; color: var(--cyan-soft); margin-bottom: 36px; backdrop-filter: blur(12px); }
   .rv-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); animation: rvPulse 2s infinite; }
   @keyframes rvPulse { 0%,100% { opacity:1; } 50% { opacity: 0.4; } }
 
-  .rv-hero__title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(3rem, 7vw, 5.5rem);
-    font-weight: 800; line-height: 1.06; letter-spacing: -0.04em; margin-bottom: 24px;
-  }
+  .rv-hero__title { font-family: 'Syne', sans-serif; font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 800; line-height: 1.06; letter-spacing: -0.04em; margin-bottom: 24px; }
   .rv-hero__title .solid { color: var(--white); }
-  .rv-hero__title .grad {
-    background: linear-gradient(110deg, #4fc3f7 0%, #1976d2 30%, #00e5ff 65%, #81d4fa 100%);
-    background-size: 220% auto;
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    animation: rvShimmer 4.5s linear infinite;
-  }
+  .rv-hero__title .grad { background: linear-gradient(110deg, #4fc3f7 0%, #1976d2 30%, #00e5ff 65%, #81d4fa 100%); background-size: 220% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: rvShimmer 4.5s linear infinite; }
   @keyframes rvShimmer { 0% { background-position: 0% center; } 100% { background-position: 220% center; } }
 
   .rv-hero__desc { color: var(--muted); font-size: clamp(1rem, 1.6vw, 1.1rem); font-weight: 300; line-height: 1.8; max-width: 620px; margin: 0 auto 40px; }
 
-  /* ═══ BUTTONS ═══ */
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 9px; padding: 14px 34px;
-    background: linear-gradient(130deg, #0d47a1 0%, #1976d2 45%, #039be5 80%, #29b6f6 100%);
-    border-radius: 10px; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 15px;
-    color: #fff; text-decoration: none;
-    box-shadow: 0 4px 20px rgba(13,71,161,0.55), 0 0 0 1px rgba(41,182,246,0.2);
-    transition: transform 0.22s, box-shadow 0.22s; position: relative; overflow: hidden;
-  }
+  .btn-primary { display: inline-flex; align-items: center; gap: 9px; padding: 14px 34px; background: linear-gradient(130deg, #0d47a1 0%, #1976d2 45%, #039be5 80%, #29b6f6 100%); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 15px; color: #fff; text-decoration: none; box-shadow: 0 4px 20px rgba(13,71,161,0.55), 0 0 0 1px rgba(41,182,246,0.2); transition: transform 0.22s, box-shadow 0.22s; position: relative; overflow: hidden; }
   .btn-primary::before { content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); transition: left 0.45s ease; }
   .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 36px rgba(3,155,229,0.6), 0 0 0 1px rgba(41,182,246,0.4); }
   .btn-primary:hover::before { left: 150%; }
 
-  .btn-ghost {
-    display: inline-flex; align-items: center; gap: 9px; padding: 14px 34px;
-    background: rgba(2,11,24,0.35); border: 1px solid rgba(41,182,246,0.38); border-radius: 10px;
-    font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 15px;
-    color: #81d4fa; text-decoration: none; backdrop-filter: blur(12px);
-    transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.22s;
-  }
+  .btn-ghost { display: inline-flex; align-items: center; gap: 9px; padding: 14px 34px; background: rgba(2,11,24,0.35); border: 1px solid rgba(41,182,246,0.38); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 15px; color: #81d4fa; text-decoration: none; backdrop-filter: blur(12px); transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.22s; }
   .btn-ghost:hover { background: rgba(3,155,229,0.12); border-color: rgba(0,229,255,0.6); color: var(--cyan); transform: translateY(-3px); }
 
-  /* ═══ RESUME BODY ═══ */
   .rv-body { padding: 60px 0 100px; }
 
-  /* Profile card */
-  .rv-profile {
-    background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px;
-    padding: 40px 44px; backdrop-filter: blur(16px); margin-bottom: 36px;
-    position: relative; overflow: hidden;
-  }
+  .rv-profile { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 40px 44px; backdrop-filter: blur(16px); margin-bottom: 36px; position: relative; overflow: hidden; }
   .rv-profile::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--blue-sky), var(--cyan), transparent); }
 
-  .rv-profile__name {
-    font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3vw, 2.4rem);
-    font-weight: 800; letter-spacing: -0.02em; color: var(--white); margin-bottom: 8px;
-  }
-  .rv-profile__role {
-    background: linear-gradient(110deg, #4fc3f7, #00e5ff); -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; background-clip: text;
-    font-size: 1.05rem; font-weight: 500; margin-bottom: 18px;
-  }
+  .rv-profile__name { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; color: var(--white); margin-bottom: 8px; }
+  .rv-profile__role { background: linear-gradient(110deg, #4fc3f7, #00e5ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 1.05rem; font-weight: 500; margin-bottom: 18px; }
   .rv-profile__meta { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 20px; }
   .rv-profile__meta-item { display: flex; align-items: center; gap: 7px; color: var(--muted); font-size: 0.9rem; }
   .rv-profile__meta-item svg { color: var(--cyan); flex-shrink: 0; }
   .rv-profile__bio { color: var(--muted); font-size: 0.95rem; line-height: 1.78; font-weight: 300; max-width: 1100px; }
 
-  /* Two-col layout */
   .rv-cols { display: grid; grid-template-columns: 300px 1fr; gap: 28px; }
   @media (max-width: 960px) { .rv-cols { grid-template-columns: 1fr; } }
 
-  /* Shared card */
-  .rv-card {
-    background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px;
-    padding: 32px 28px; backdrop-filter: blur(16px); position: relative; overflow: hidden;
-  }
+  .rv-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 32px 28px; backdrop-filter: blur(16px); position: relative; overflow: hidden; }
   .rv-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--blue-sky), var(--cyan), transparent); opacity: 0.6; }
 
-  .rv-card__heading {
-    font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700;
-    color: var(--white); margin-bottom: 24px;
-    display: flex; align-items: center; gap: 9px;
-  }
+  .rv-card__heading { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 24px; display: flex; align-items: center; gap: 9px; }
   .rv-card__heading svg { color: var(--cyan); }
 
-  /* Skill groups */
   .rv-skill-group { margin-bottom: 24px; }
   .rv-skill-group:last-child { margin-bottom: 0; }
   .rv-skill-group h4 { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan-soft); margin-bottom: 10px; }
   .rv-pills { display: flex; flex-wrap: wrap; gap: 7px; }
   .rv-pill { padding: 4px 12px; background: rgba(33,150,243,0.1); border: 1px solid rgba(33,150,243,0.22); border-radius: 100px; font-size: 11.5px; color: var(--cyan-soft); font-weight: 500; }
 
-  /* Timeline */
   .rv-timeline { display: flex; flex-direction: column; gap: 36px; }
-
   .rv-entry { border-left: 1.5px solid rgba(33,150,243,0.25); padding-left: 24px; position: relative; }
   .rv-entry::before { content: ''; position: absolute; top: 6px; left: -5px; width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
-
   .rv-entry__header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
   .rv-entry__title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white); }
   .rv-entry__badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; padding: 4px 12px; background: rgba(33,150,243,0.12); border: 1px solid rgba(33,150,243,0.28); border-radius: 100px; color: var(--cyan-soft); white-space: nowrap; }
@@ -178,13 +103,11 @@ const styles = `
   .rv-entry__list { padding-left: 18px; display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
   .rv-entry__list li { font-size: 0.87rem; color: var(--muted); line-height: 1.65; font-weight: 300; }
 
-  /* ═══ FADE UP ═══ */
   .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
   .stagger-1 { transition-delay: 0.08s; } .stagger-2 { transition-delay: 0.16s; }
   .stagger-3 { transition-delay: 0.24s; } .stagger-4 { transition-delay: 0.32s; }
 
-  /* ═══ RESPONSIVE ═══ */
   @media (max-width: 768px) {
     .rv-container { padding: 0 20px; }
     .rv-profile { padding: 28px 22px; }
@@ -194,14 +117,14 @@ const styles = `
 `;
 
 const BUBBLES = [
-  { size: 8, left: 5, dur: 14, delay: 0, v: "v1" },
-  { size: 14, left: 15, dur: 18, delay: 2, v: "v2" },
-  { size: 6, left: 27, dur: 12, delay: 4, v: "v3" },
-  { size: 18, left: 40, dur: 22, delay: 1, v: "v1" },
-  { size: 10, left: 55, dur: 16, delay: 6, v: "v2" },
-  { size: 16, left: 67, dur: 20, delay: 8, v: "v3" },
-  { size: 9, left: 78, dur: 15, delay: 0.5, v: "v1" },
-  { size: 20, left: 88, dur: 25, delay: 5, v: "v2" },
+  { size: 8,  left: 5,  dur: 14, delay: 0,   v: "v1" },
+  { size: 14, left: 15, dur: 18, delay: 2,   v: "v2" },
+  { size: 6,  left: 27, dur: 12, delay: 4,   v: "v3" },
+  { size: 18, left: 40, dur: 22, delay: 1,   v: "v1" },
+  { size: 10, left: 55, dur: 16, delay: 6,   v: "v2" },
+  { size: 16, left: 67, dur: 20, delay: 8,   v: "v3" },
+  { size: 9,  left: 78, dur: 15, delay: 0.5, v: "v1" },
+  { size: 20, left: 88, dur: 25, delay: 5,   v: "v2" },
 ];
 
 function useReveal() {
@@ -224,7 +147,6 @@ const Resume = () => {
     <>
       <style>{styles}</style>
 
-      {/* Background */}
       <div className="rv-bg-mesh" />
       <div className="rv-orb rv-orb-1" />
       <div className="rv-orb rv-orb-2" />
@@ -258,15 +180,11 @@ const Resume = () => {
             </p>
 
             <div className="fade-up visible" style={{ transitionDelay: "0.3s", display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-              <a href="/RESUME_Saira_Atta.pdf"
-                download="RESUME_Saira_Atta.pdf"
-                className="btn-primary">
+              <a href="/RESUME_Saira_Atta.pdf" download="RESUME_Saira_Atta.pdf" className="btn-primary">
                 Download Resume <Download size={17} />
               </a>
-
               <Link to="/contact" className="btn-ghost">Contact Me</Link>
             </div>
-
 
           </div>
         </section>
@@ -280,13 +198,13 @@ const Resume = () => {
             {/* Profile card */}
             <div className="rv-profile fade-up">
               <div className="rv-profile__name">Saira Atta</div>
-              <div className="rv-profile__role">Frontend &amp; WordPress WooCommerce Developer</div>
+              <div className="rv-profile__role">Frontend · WordPress · Webflow &amp; WooCommerce Developer</div>
               <div className="rv-profile__meta">
                 <span className="rv-profile__meta-item"><MapPin size={15} /> Pakistan</span>
                 <span className="rv-profile__meta-item"><FileText size={15} /> sairaatta.tech@gmail.com</span>
               </div>
               <p className="rv-profile__bio">
-                Frontend and WordPress WooCommerce Developer with 2 years of experience building responsive, performance-optimized, and conversion-focused websites. I specialize in creating modern user interfaces, developing custom WordPress solutions, and building eCommerce stores that enhance user experience and drive business growth.
+                Frontend, WordPress, Webflow &amp; WooCommerce Developer with 2 years of experience building responsive, performance-optimized, and conversion-focused websites. I specialize in creating modern user interfaces, developing custom WordPress and Webflow solutions, and building eCommerce stores that enhance user experience and drive business growth.
               </p>
             </div>
 
@@ -301,6 +219,15 @@ const Resume = () => {
                   <h4>Frontend Development</h4>
                   <div className="rv-pills">
                     {["HTML5", "CSS3", "JavaScript", "React.js", "Tailwind CSS", "Bootstrap", "Responsive Design"].map(s => (
+                      <span key={s} className="rv-pill">{s}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="rv-skill-group">
+                  <h4>Webflow</h4>
+                  <div className="rv-pills">
+                    {["Webflow CMS", "Custom Interactions", "Animations", "Figma to Webflow", "Ecommerce", "Client Handoff"].map(s => (
                       <span key={s} className="rv-pill">{s}</span>
                     ))}
                   </div>
@@ -333,19 +260,19 @@ const Resume = () => {
 
                   <div className="rv-entry">
                     <div className="rv-entry__header">
-                      <span className="rv-entry__title">Freelance WordPress Developer</span>
+                      <span className="rv-entry__title">Freelance WordPress &amp; Webflow Developer</span>
                       <span className="rv-entry__badge"><Calendar size={11} /> Apr 2025 – Present</span>
                     </div>
                     <div className="rv-entry__org">Fiverr</div>
                     <ul className="rv-entry__list">
                       <li>Designed and developed custom WordPress websites for clients across eCommerce and service-based industries.</li>
                       <li>Built and managed WooCommerce stores including product setup, payment gateway integration, and shipping configuration.</li>
+                      <li>Created Webflow sites with CMS collections, custom interactions, and scroll-based animations from Figma designs.</li>
                       <li>Customized themes and plugins to meet client-specific requirements and branding guidelines.</li>
                       <li>Optimized website performance, security, and SEO to improve search visibility and engagement.</li>
-                      <li>Converted Figma mockups into fully functional, responsive WordPress websites.</li>
                     </ul>
                     <div className="rv-pills">
-                      {["WordPress", "WooCommerce", "Elementor Pro", "Theme Customization", "SEO", "cPanel"].map(t => (
+                      {["WordPress", "WooCommerce", "Webflow", "Elementor Pro", "Theme Customization", "SEO", "cPanel"].map(t => (
                         <span key={t} className="rv-pill">{t}</span>
                       ))}
                     </div>
