@@ -142,6 +142,17 @@ const styles = `
 
   .pf-card__category { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); margin-bottom: 10px; display: block; }
 
+  .pf-card[data-category="AI & Agentic AI"] {
+  border-color: rgba(0, 229, 255, 0.24);
+  }
+  
+  .pf-card[data-category="AI & Agentic AI"]:hover {
+    border-color: rgba(0, 229, 255, 0.55);
+    box-shadow:
+      0 24px 56px rgba(0, 229, 255, 0.10),
+      0 0 35px rgba(33, 150, 243, 0.06);
+  }
+
   .pf-card__title {
     font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700;
     color: var(--white); margin-bottom: 12px; line-height: 1.4; transition: color 0.2s;
@@ -211,64 +222,182 @@ const styles = `
 
 const PROJECTS = [
   {
+    id: 1,
+    title: "AI Recipe Assistant",
+    description:
+      "A multimodal agentic AI recipe generation system built with LangGraph, MCP, and GPT-OSS 20B via Groq. The system orchestrates specialized recipe agents, performs external recipe research, processes image inputs with Moondream, and generates structured recipes based on user preferences.",
+    image: "/recipe-ai.png",
+    tags: [
+      "Agentic AI",
+      "LangGraph",
+      "Groq",
+      "GPT-OSS 20B",
+      "MCP",
+      "Moondream",
+      "Multimodal AI",
+      "Streamlit"
+    ],
+    category: "AI & Agentic AI",
+    liveUrl: "YOUR_RECIPE_PROJECT_URL",
+    githubUrl: "YOUR_GITHUB_URL"
+  },
+
+  {
+    id: 2,
+    title: "LinkedIn Digital Twin",
+    description:
+      "An AI-powered professional digital twin that answers questions using profile-grounded context extracted from a LinkedIn PDF. Built with FastAPI, OpenAI, PostgreSQL, and Gradio with session management, prompt-injection detection, rate limiting, caching, and secure IP hashing.",
+    image: "/digital-twin.png",
+    tags: [
+      "AI Agent",
+      "LLM",
+      "FastAPI",
+      "OpenAI",
+      "PostgreSQL",
+      "Prompt Security",
+      "Gradio"
+    ],
+    category: "AI & Agentic AI",
+    liveUrl: "YOUR_DIGITAL_TWIN_URL",
+    githubUrl: "YOUR_GITHUB_URL"
+  },
+
+  {
+    id: 3,
+    title: "Doc Insight",
+    description:
+      "An AI-powered document intelligence and retrieval system that processes documents into contextual chunks and enables users to ask questions over their uploaded knowledge base.",
+    image: "/doc-insight.png",
+    tags: [
+      "RAG",
+      "LLM",
+      "Document AI",
+      "Embeddings",
+      "Vector Search",
+      "Python"
+    ],
+    category: "AI & Agentic AI",
+    githubUrl: "YOUR_GITHUB_URL"
+  },
+
+  {
+    id: 4,
+    title: "Codebase RAG Assistant",
+    description:
+      "A retrieval-augmented AI assistant designed to understand software repositories, retrieve relevant code context, and answer developer questions using the project's codebase as its knowledge source.",
+    image: "/codebase-rag.png",
+    tags: [
+      "RAG",
+      "LLM",
+      "Code Intelligence",
+      "Embeddings",
+      "Vector Search",
+      "AI Assistant"
+    ],
+    category: "AI & Agentic AI",
+    githubUrl: "YOUR_GITHUB_URL"
+  },
+
+  {
     id: 7,
     title: "Nature True Green Landscaping – Website Development",
-    description: "Built a fully responsive, performance-optimized business website using modern frontend technologies, implementing SEO best practices, structured service architecture, and WhatsApp API integration to drive lead generation and user engagement.",
+    description:
+      "Built a fully responsive, performance-optimized business website using modern frontend technologies, implementing SEO best practices, structured service architecture, and WhatsApp API integration to drive lead generation and user engagement.",
     image: "/nature-home.png",
-    tags: ["WordPress", "Elementor Pro", "SEO", "WhatsApp API", "Responsive Design"],
+    tags: [
+      "WordPress",
+      "Elementor Pro",
+      "SEO",
+      "WhatsApp API",
+      "Responsive Design"
+    ],
     category: "WordPress",
-    liveUrl: "https://naturetruegreenlandscaping.com/",
+    liveUrl: "https://naturetruegreenlandscaping.com/"
   },
+
   {
     id: 8,
     title: "UrbanNest – Modern Furniture Store",
-    description: "A fully responsive WooCommerce furniture store with category filtering, wishlist functionality, product variations, and optimized checkout experience. Designed with a clean and premium UI for high-end home decor brands.",
+    description:
+      "A fully responsive WooCommerce furniture store with category filtering, wishlist functionality, product variations, and optimized checkout experience. Designed with a clean and premium UI for high-end home decor brands.",
     image: "/urban.png",
-    tags: ["WordPress", "Elementor Pro", "WooCommerce", "SEO", "Responsive Design"],
+    tags: [
+      "WordPress",
+      "Elementor Pro",
+      "WooCommerce",
+      "SEO",
+      "Responsive Design"
+    ],
     category: "WordPress",
-    liveUrl: "https://urbannest-furniture.vercel.app",
+    liveUrl: "https://urbannest-furniture.vercel.app"
   },
+
   {
     id: 10,
     title: "Project Allocation & Evaluation According to NCEAC Rules",
-    description: "A centralized final-year project management system with secure RBAC, automated supervisor allocation, and structured evaluation workflows.",
+    description:
+      "A centralized final-year project management system with secure RBAC, automated supervisor allocation, and structured evaluation workflows.",
     image: "/Home.png",
-    tags: ["React.js", "TailwindCSS", "JavaScript", "RBAC", "Django", "SQLite", "Python"],
+    tags: [
+      "React.js",
+      "TailwindCSS",
+      "JavaScript",
+      "RBAC",
+      "Django",
+      "SQLite",
+      "Python"
+    ],
     category: "Frontend",
-    liveUrl: "https://fypproject-rho.vercel.app/",
+    liveUrl: "https://fypproject-rho.vercel.app/"
   },
+
   {
     id: 11,
     title: "Big Jigs Toys – E-commerce Toy Store Overview",
-    description: "A detailed PDF case study of the Big Jigs Toys e-commerce website, showcasing the product catalog, responsive design, user-friendly navigation, and seamless online shopping experience.",
+    description:
+      "A detailed PDF case study of the Big Jigs Toys e-commerce website, showcasing the product catalog, responsive design, user-friendly navigation, and seamless online shopping experience.",
     image: "/toy.png",
-    tags: ["Elementor Pro", "WooCommerce", "WordPress", "Responsive Design", "SEO"],
+    tags: [
+      "Elementor Pro",
+      "WooCommerce",
+      "WordPress",
+      "Responsive Design",
+      "SEO"
+    ],
     category: "WordPress",
-    pdfUrl: "/toy-shop.pdf",
+    pdfUrl: "/toy-shop.pdf"
   },
+
   {
     id: 12,
     title: "Cult Beauty – E-commerce Skincare & Beauty Store Overview",
-    description: "A detailed PDF case study of the Cult Beauty e-commerce website, highlighting its product catalog, user-friendly navigation, responsive design, and modern UI/UX for online beauty shoppers.",
+    description:
+      "A detailed PDF case study of the Cult Beauty e-commerce website, highlighting its product catalog, user-friendly navigation, responsive design, and modern UI/UX for online beauty shoppers.",
     image: "/beauty.png",
-    tags: ["WooCommerce", "Elementor Pro", "Responsive Design", "SEO", "WordPress"],
+    tags: [
+      "WooCommerce",
+      "Elementor Pro",
+      "Responsive Design",
+      "SEO",
+      "WordPress"
+    ],
     category: "WordPress",
-    pdfUrl: "/beauty-shop.pdf",
-  },
+    pdfUrl: "/beauty-shop.pdf"
+  }
 ];
 
-const FILTERS = ["All", "Frontend", "WordPress"];
+const FILTERS = ["All", "AI & Agentic AI", "Frontend", "WordPress"];
 
 const BUBBLES = [
-  { size: 8,  left: 5,  dur: 14, delay: 0,   v: "v1" },
-  { size: 14, left: 14, dur: 18, delay: 2,   v: "v2" },
-  { size: 6,  left: 24, dur: 12, delay: 4,   v: "v3" },
-  { size: 18, left: 35, dur: 22, delay: 1,   v: "v1" },
-  { size: 10, left: 48, dur: 16, delay: 6,   v: "v2" },
-  { size: 16, left: 60, dur: 20, delay: 8,   v: "v3" },
-  { size: 9,  left: 72, dur: 15, delay: 0.5, v: "v1" },
-  { size: 20, left: 83, dur: 25, delay: 5,   v: "v2" },
-  { size: 7,  left: 92, dur: 13, delay: 3,   v: "v3" },
+  { size: 8, left: 5, dur: 14, delay: 0, v: "v1" },
+  { size: 14, left: 14, dur: 18, delay: 2, v: "v2" },
+  { size: 6, left: 24, dur: 12, delay: 4, v: "v3" },
+  { size: 18, left: 35, dur: 22, delay: 1, v: "v1" },
+  { size: 10, left: 48, dur: 16, delay: 6, v: "v2" },
+  { size: 16, left: 60, dur: 20, delay: 8, v: "v3" },
+  { size: 9, left: 72, dur: 15, delay: 0.5, v: "v1" },
+  { size: 20, left: 83, dur: 25, delay: 5, v: "v2" },
+  { size: 7, left: 92, dur: 13, delay: 3, v: "v3" },
 ];
 
 function useReveal() {
@@ -327,7 +456,7 @@ const Portfolio = () => {
           <div className="pf-hero__inner">
             <div className="pf-badge fade-up visible">
               <span className="pf-badge-dot" />
-              Selected Work &amp; Projects
+              AI &amp; Agentic AI · Frontend · Web Development
             </div>
 
             <h1 className="pf-hero__title fade-up visible" style={{ transitionDelay: "0.1s" }}>
@@ -335,8 +464,13 @@ const Portfolio = () => {
               <span className="grad">Portfolio</span>
             </h1>
 
-            <p className="pf-hero__desc fade-up visible" style={{ transitionDelay: "0.2s" }}>
-              A showcase of my projects and applications, demonstrating expertise in Frontend development, WordPress, and WooCommerce.
+            <p
+              className="pf-hero__desc fade-up visible"
+              style={{ transitionDelay: "0.2s" }}
+            >
+              A collection of AI-powered applications, agentic workflows, RAG systems,
+              multimodal solutions, and modern web projects built with
+              <strong> LLMs, LangGraph, MCP, React.js, and modern AI technologies.</strong>
             </p>
           </div>
         </section>
@@ -366,8 +500,11 @@ const Portfolio = () => {
             {filteredProjects.length > 0 ? (
               <div className="pf-grid">
                 {filteredProjects.map((project, i) => (
-                  <div key={project.id} className={`pf-card fade-up stagger-${(i % 4) + 1}`}>
-
+                  <div
+                    key={project.id}
+                    data-category={project.category}
+                    className={`pf-card fade-up stagger-${(i % 4) + 1}`}
+                  >
                     <div className="pf-card__img">
                       <img src={project.image} alt={project.title} />
                     </div>
@@ -394,6 +531,18 @@ const Portfolio = () => {
                             <FileText size={13} /> View PDF
                           </a>
                         )}
+
+                        {project.githubUrl && (
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="pf-link pf-link-ghost"
+                          >
+                            <Github size={13} /> GitHub
+                          </a>
+                        )}
+
                       </div>
                     </div>
 
@@ -414,8 +563,13 @@ const Portfolio = () => {
         {/* ══════════ CTA ══════════ */}
         <section className="pf-cta">
           <div className="pf-cta__card fade-up">
-            <h2>Let's Build Something Amazing Together</h2>
-            <p>Have a project in mind? I'm always interested in collaborating on innovative ideas.</p>
+            <h2>Let's Build Something Intelligent</h2>
+
+            <p>
+              Have an AI, agentic workflow, RAG system, or modern web project in mind?
+              Let's turn the idea into a practical digital product.
+            </p>
+
             <Link to="/contact" className="btn-primary">
               Start a Conversation <ArrowRight size={17} />
             </Link>

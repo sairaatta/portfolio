@@ -1,6 +1,21 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Code, Database, Server, Layers, Monitor, Cpu, Globe } from 'lucide-react';
+import {
+  ArrowRight,
+  Code,
+  Database,
+  Server,
+  Layers,
+  Monitor,
+  Cpu,
+  Globe,
+  Brain,
+  Bot,
+  Network,
+  Sparkles,
+  Workflow,
+  ShieldCheck
+} from 'lucide-react';
 
 /* ── All styles matching Home page ── */
 const styles = `
@@ -153,8 +168,11 @@ const styles = `
   .timeline-extra { display: flex; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
 
   /* ═══ SKILLS GRID ═══ */
-  .skills-grid-about { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
-
+  .skills-grid-about {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
   .skill-card-about {
     background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px;
     padding: 24px 22px; backdrop-filter: blur(16px);
@@ -194,15 +212,27 @@ const styles = `
     .beyond-card { padding: 36px 24px; }
     .exp-grid { gap: 40px; }
   }
+
+  @media (max-width: 900px) {
+  .skills-grid-about {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .skills-grid-about {
+      grid-template-columns: 1fr;
+    }
+  }
 `;
 
 /* Bubble data */
 const BUBBLES = [
-  { size:8,  left:5,  dur:14, delay:0,   v:"v1" }, { size:14, left:12, dur:18, delay:2,   v:"v2" },
-  { size:6,  left:22, dur:12, delay:4,   v:"v3" }, { size:18, left:30, dur:22, delay:1,   v:"v1" },
-  { size:10, left:40, dur:16, delay:6,   v:"v2" }, { size:16, left:52, dur:20, delay:8,   v:"v3" },
-  { size:9,  left:62, dur:15, delay:0.5, v:"v1" }, { size:22, left:70, dur:25, delay:5,   v:"v2" },
-  { size:7,  left:80, dur:13, delay:2.5, v:"v3" }, { size:12, left:90, dur:17, delay:7,   v:"v1" },
+  { size: 8, left: 5, dur: 14, delay: 0, v: "v1" }, { size: 14, left: 12, dur: 18, delay: 2, v: "v2" },
+  { size: 6, left: 22, dur: 12, delay: 4, v: "v3" }, { size: 18, left: 30, dur: 22, delay: 1, v: "v1" },
+  { size: 10, left: 40, dur: 16, delay: 6, v: "v2" }, { size: 16, left: 52, dur: 20, delay: 8, v: "v3" },
+  { size: 9, left: 62, dur: 15, delay: 0.5, v: "v1" }, { size: 22, left: 70, dur: 25, delay: 5, v: "v2" },
+  { size: 7, left: 80, dur: 13, delay: 2.5, v: "v3" }, { size: 12, left: 90, dur: 17, delay: 7, v: "v1" },
 ];
 
 function useReveal() {
@@ -218,21 +248,96 @@ function useReveal() {
 }
 
 const SKILLS = [
-  { title: "HTML & CSS",                  icon: <Code size={20} />,     c: "icon-blue", desc: "Building structured web pages and styling them with modern CSS." },
-  { title: "JavaScript",                   icon: <Cpu size={20} />,      c: "icon-cyan", desc: "Dynamic behavior and interactivity using vanilla JS and ES6+ features." },
-  { title: "React.js",                     icon: <Monitor size={20} />,  c: "icon-blue", desc: "Component-based UIs and SPAs with React.js hooks and Vite." },
-  { title: "Tailwind CSS",                 icon: <Layers size={20} />,   c: "icon-cyan", desc: "Sleek, responsive UIs using the utility-first Tailwind CSS framework." },
-  { title: "WordPress Development",        icon: <Server size={20} />,   c: "icon-blue", desc: "Custom themes, plugin development, and full website builds." },
-  { title: "WooCommerce",                  icon: <Layers size={20} />,   c: "icon-cyan", desc: "Secure, conversion-optimized eCommerce stores." },
-  { title: "Page Builders",                icon: <Monitor size={20} />,  c: "icon-blue", desc: "Elementor, WPBakery, and Gutenberg for flexible client-friendly sites." },
-  { title: "WordPress Security & Backup",  icon: <Globe size={20} />,    c: "icon-cyan", desc: "Security best practices, backups, and malware protection." },
-  { title: "SEO & Performance",            icon: <Monitor size={20} />,  c: "icon-blue", desc: "Speed, SEO, and accessibility optimization for better rankings." },
-  { title: "Plugin Customization",         icon: <Server size={20} />,   c: "icon-cyan", desc: "Modifying WordPress plugins to meet project-specific needs." },
-  { title: "Database & CMS Basics",        icon: <Database size={20} />, c: "icon-blue", desc: "MySQL, PHP, and WordPress database integrations." },
-  { title: "Responsive Web Design",        icon: <Monitor size={20} />,  c: "icon-cyan", desc: "Fully responsive layouts across all screen sizes." },
-  { title: "Git & GitHub",                 icon: <Globe size={20} />,    c: "icon-blue", desc: "Version control and code management using Git and GitHub." },
-  { title: "REST API Integration",         icon: <Globe size={20} />,    c: "icon-cyan", desc: "Connecting frontends with RESTful APIs using Fetch or Axios." },
-  { title: "VS Code / Visual Studio",      icon: <Code size={20} />,     c: "icon-blue", desc: "Efficient coding with essential developer extensions." },
+  {
+    title: "AI & Agentic AI Engineering",
+    icon: <Brain size={20} />,
+    c: "icon-cyan",
+    desc: "Building intelligent AI applications using LLMs, AI agents, agentic workflows, and orchestration patterns."
+  },
+  {
+    title: "LLM Applications",
+    icon: <Sparkles size={20} />,
+    c: "icon-blue",
+    desc: "Developing practical LLM-powered applications with structured outputs, prompt engineering, context management, and grounded responses."
+  },
+  {
+    title: "RAG & Knowledge Systems",
+    icon: <Database size={20} />,
+    c: "icon-cyan",
+    desc: "Building retrieval-augmented applications for document understanding, contextual retrieval, embeddings, and knowledge-grounded responses."
+  },
+  {
+    title: "AI Agents & Workflows",
+    icon: <Bot size={20} />,
+    c: "icon-blue",
+    desc: "Designing autonomous multi-step workflows with decision routing, specialized agents, orchestration, and task execution."
+  },
+  {
+    title: "LangGraph & Agent Orchestration",
+    icon: <Workflow size={20} />,
+    c: "icon-cyan",
+    desc: "Creating stateful AI workflows and multi-agent systems using graph-based orchestration and specialized agent nodes."
+  },
+  {
+    title: "MCP & Tool Integration",
+    icon: <Network size={20} />,
+    c: "icon-blue",
+    desc: "Integrating AI applications with external tools and data sources through Model Context Protocol and tool-based workflows."
+  },
+  {
+    title: "Multimodal AI",
+    icon: <Cpu size={20} />,
+    c: "icon-cyan",
+    desc: "Working with text and image inputs to build multimodal AI experiences using vision and language models."
+  },
+  {
+    title: "Prompt Engineering",
+    icon: <Code size={20} />,
+    c: "icon-blue",
+    desc: "Designing prompts, grounding strategies, validation rules, and structured instructions for reliable LLM behavior."
+  },
+  {
+    title: "AI Security & Validation",
+    icon: <ShieldCheck size={20} />,
+    c: "icon-cyan",
+    desc: "Implementing prompt-injection detection, input validation, hallucination prevention, rate limiting, and secure AI workflows."
+  },
+  {
+    title: "Frontend Development",
+    icon: <Monitor size={20} />,
+    c: "icon-blue",
+    desc: "Building modern responsive interfaces for AI-powered and full-stack applications using React.js and Tailwind CSS."
+  },
+  {
+    title: "React.js",
+    icon: <Monitor size={20} />,
+    c: "icon-cyan",
+    desc: "Building component-based user interfaces and scalable single-page applications with React.js."
+  },
+  {
+    title: "JavaScript",
+    icon: <Cpu size={20} />,
+    c: "icon-blue",
+    desc: "Developing interactive web applications using modern JavaScript and ES6+ features."
+  },
+  {
+    title: "WordPress Development",
+    icon: <Server size={20} />,
+    c: "icon-cyan",
+    desc: "Developing custom WordPress websites, themes, plugins, and CMS-based solutions."
+  },
+  {
+    title: "WooCommerce",
+    icon: <Layers size={20} />,
+    c: "icon-blue",
+    desc: "Building responsive and conversion-focused eCommerce stores with optimized checkout experiences."
+  },
+  {
+    title: "Git & GitHub",
+    icon: <Globe size={20} />,
+    c: "icon-cyan",
+    desc: "Managing source code, collaboration, version control, and project workflows using Git and GitHub."
+  }
 ];
 
 const About = () => {
@@ -264,7 +369,7 @@ const About = () => {
 
             <div className="about-eyebrow fade-up visible">
               <span className="about-eyebrow-dot" />
-              Frontend &amp; eCommerce WordPress Developer
+              AI &amp; Agentic AI Engineer · Frontend Developer
             </div>
 
             <h1 className="about-hero__title fade-up visible" style={{ transitionDelay: "0.1s" }}>
@@ -272,21 +377,45 @@ const About = () => {
               <span className="grad">Me</span>
             </h1>
 
-            <div className="about-hero__body fade-up visible" style={{ transitionDelay: "0.2s" }}>
+            <div
+              className="about-hero__body fade-up visible"
+              style={{ transitionDelay: "0.2s" }}
+            >
               <p>
-                I'm a passionate <span className="hl-blue">Frontend &amp; WordPress Developer</span> with over <span className="hl-cyan">2 years of experience</span> crafting responsive and scalable web applications for clients across various industries. I specialize in building modern UIs using <span className="hl-cyan">HTML, CSS, JavaScript, React.js</span>, and <span className="hl-cyan">Tailwind CSS</span>, while converting <span className="hl-blue">Figma designs</span> into fully responsive websites.
+                I'm an <span className="hl-blue">AI &amp; Agentic AI Engineer</span> and
+                <span className="hl-cyan"> Frontend Developer</span> focused on building
+                intelligent applications that combine modern AI systems with intuitive
+                user experiences.
               </p>
+
               <p>
-                I also provide <span className="hl-cyan">WooCommerce</span> development services as a freelancer on Fiverr, building functional, responsive eCommerce websites focused on <span className="hl-blue">performance</span>, <span className="hl-blue">SEO</span>, and <span className="hl-blue">user experience</span>.
+                My experience includes working with <span className="hl-cyan">LLMs</span>,
+                <span className="hl-cyan"> RAG</span>, <span className="hl-cyan">AI agents</span>,
+                <span className="hl-cyan"> LangGraph</span>, <span className="hl-cyan">MCP</span>,
+                <span className="hl-cyan"> multimodal AI</span>, prompt engineering,
+                structured outputs, and agentic workflow orchestration.
               </p>
+
               <p>
-                Beyond coding, I enjoy collaborating with designers and clients to transform ideas into functional digital solutions. I'm constantly refining my skills in <span className="hl-cyan">React.js</span> and <span className="hl-cyan">Tailwind CSS</span>, and exploring <span className="hl-blue">Figma</span> to improve design handoffs and workflow efficiency.
+                I also have a strong foundation in <span className="hl-blue">React.js</span>,
+                <span className="hl-blue"> JavaScript</span>, <span className="hl-blue">Tailwind CSS</span>,
+                WordPress, and WooCommerce, allowing me to build complete AI-powered
+                products from intelligent backend workflows to polished frontend
+                experiences.
               </p>
             </div>
 
-            <div className="about-hero__btns fade-up visible" style={{ transitionDelay: "0.3s" }}>
-              <Link to="/portfolio" className="btn-primary">View My Work <ArrowRight size={17} /></Link>
-              <Link to="/resume"    className="btn-ghost">My Resume</Link>
+            <div
+              className="about-hero__btns fade-up visible"
+              style={{ transitionDelay: "0.3s" }}
+            >
+              <Link to="/portfolio" className="btn-primary">
+                View My Work <ArrowRight size={17} />
+              </Link>
+
+              <Link to="/resume" className="btn-ghost">
+                My Resume
+              </Link>
             </div>
           </div>
         </section>
@@ -305,6 +434,29 @@ const About = () => {
                   <h2 className="about-section__title">Professional <span className="accent">Experience</span></h2>
                 </div>
                 <div className="timeline fade-up" style={{ transitionDelay: "0.1s" }}>
+
+                  <div className="timeline-item">
+                    <div className="timeline-header">
+                      <span className="timeline-title">
+                        AI &amp; Agentic AI Engineering Intern
+                      </span>
+                      <span className="timeline-badge">
+                        July 2026 - Present
+                      </span>
+                    </div>
+
+                    <div className="timeline-org">
+                      TkXel, Bahawalpur
+                    </div>
+
+                    <p className="timeline-desc">
+                      Developed AI-powered applications using LLMs, RAG, agentic workflows,
+                      LangGraph, MCP, multimodal AI, FastAPI, PostgreSQL, and structured
+                      outputs. Worked on AI agents, document intelligence, digital twin
+                      systems, prompt-injection detection, and intelligent workflow
+                      orchestration.
+                    </p>
+                  </div>
 
                   <div className="timeline-item">
                     <div className="timeline-header">
@@ -354,7 +506,11 @@ const About = () => {
                       <span className="timeline-badge">Grade: A</span>
                       <span className="timeline-badge">GPA: 3.64</span>
                     </div>
-                    <p className="timeline-desc" style={{ marginTop: 10 }}>Major in Computer Science with focus on web technologies and web application development.</p>
+                    <p className="timeline-desc" style={{ marginTop: 10 }}>
+                      Computer Science foundation covering software engineering, programming,
+                      databases, web technologies, and the development of intelligent
+                      applications using modern AI and machine learning concepts.
+                    </p>
                   </div>
 
                 </div>
@@ -371,10 +527,15 @@ const About = () => {
           <div className="about-container">
 
             <div className="fade-up" style={{ textAlign: "center", marginBottom: 64 }}>
-              <span className="about-section__eyebrow">What I know</span>
-              <h2 className="about-section__title">Technical <span className="accent">Skills</span></h2>
-              <p style={{ color: "var(--muted)", fontSize: "1.05rem", fontWeight: 300, maxWidth: 560, margin: "0 auto" }}>
-                A comprehensive overview of my technical expertise and specialized skill set.
+              <span className="about-section__eyebrow">What I Build With</span>
+
+              <h2 className="about-section__title">
+                AI Engineering <span className="accent">&amp; Technical Skills</span>
+              </h2>
+
+              <p>
+                A blend of AI engineering, agentic systems, modern frontend development,
+                and full-stack technologies used to build intelligent digital products.
               </p>
             </div>
 
@@ -404,13 +565,30 @@ const About = () => {
 
             <div className="beyond-card fade-up">
               <p>
-                When I'm not immersed in code, I enjoy exploring new technologies through personal projects and contributing to open-source communities. Outside the tech world, I'm passionate about <span className="hl-blue">cooking</span> and <span className="hl-blue">walking</span>.
+                When I'm not building software, I enjoy exploring emerging AI
+                technologies and turning new concepts into practical projects.
+                I'm particularly interested in <span className="hl-blue">Agentic AI</span>,
+                <span className="hl-blue"> LLM applications</span>, multimodal systems,
+                and the evolving ecosystem around intelligent agents.
               </p>
+
               <p>
-                I'm passionate about staying updated with the latest industry trends and sharing knowledge through mentorship and tech meetups. I believe in continuous learning and regularly participate in hackathons and coding challenges to push my boundaries.
+                I believe in continuous learning through hands-on experimentation,
+                technical projects, hackathons, and collaboration. My goal is to keep
+                growing as an <span className="hl-blue">AI Engineer</span> while combining
+                intelligent systems with thoughtful frontend experiences.
               </p>
+
+              <p>
+                Outside technology, I enjoy <span className="hl-blue">cooking</span> and
+                <span className="hl-blue"> walking</span>, which give me a good balance
+                away from the screen.
+              </p>
+
               <div style={{ textAlign: "center", marginTop: 36 }}>
-                <Link to="/contact" className="btn-primary">Let's Connect <ArrowRight size={17} /></Link>
+                <Link to="/contact" className="btn-primary">
+                  Let's Connect <ArrowRight size={17} />
+                </Link>
               </div>
             </div>
 

@@ -135,8 +135,8 @@ const Footer = () => {
               </Link>
 
               <p className="ft-desc">
-                Frontend Developer skilled in React.js, Tailwind CSS, and WordPress WooCommerce.
-                Passionate about building modern, responsive, and user-friendly web experiences.
+                AI Engineer and Frontend Developer experienced in Agentic AI, LLM applications, RAG, AI agents, LangGraph, MCP, and modern web development. 
+                Skilled in React.js, Tailwind CSS, and WordPress WooCommerce, with a passion for building intelligent, scalable, and user-friendly digital experiences.
               </p>
 
               {/* <div className="ft-socials">

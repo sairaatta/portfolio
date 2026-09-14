@@ -249,16 +249,22 @@ const Resume = () => {
             </div>
 
             <h1 className="rv-hero__title fade-up visible" style={{ transitionDelay: "0.1s" }}>
-              <span className="solid">My </span>
-              <span className="grad">Resume</span>
+              <span className="grad">Agentic AI</span>
+              <br />
+              <span className="solid">Engineer</span>
             </h1>
 
-            <p className="rv-hero__desc fade-up visible" style={{ transitionDelay: "0.2s" }}>
-              A detailed overview of my professional experience, education, and technical skills.
+            <p
+              className="rv-hero__desc fade-up visible"
+              style={{ transitionDelay: "0.2s" }}
+            >
+              AI &amp; Agentic AI Engineer and Frontend Developer building
+              intelligent applications, LLM-powered systems, agentic workflows,
+              RAG solutions, multimodal AI systems, and modern web experiences.
             </p>
 
             <div className="fade-up visible" style={{ transitionDelay: "0.3s", display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-              <a href="/RESUME_Saira_Atta.pdf"
+              <a href="/RESUME_SAIRA_ATTA.pdf"
                 download="RESUME_Saira_Atta.pdf"
                 className="btn-primary">
                 Download Resume <Download size={17} />
@@ -280,13 +286,21 @@ const Resume = () => {
             {/* Profile card */}
             <div className="rv-profile fade-up">
               <div className="rv-profile__name">Saira Atta</div>
-              <div className="rv-profile__role">Frontend &amp; WordPress WooCommerce Developer</div>
+              <div className="rv-profile__role">
+                AI &amp; Agentic AI Engineer · Frontend Developer
+              </div>
               <div className="rv-profile__meta">
                 <span className="rv-profile__meta-item"><MapPin size={15} /> Pakistan</span>
                 <span className="rv-profile__meta-item"><FileText size={15} /> sairaatta.tech@gmail.com</span>
               </div>
               <p className="rv-profile__bio">
-                Frontend and WordPress WooCommerce Developer with 2 years of experience building responsive, performance-optimized, and conversion-focused websites. I specialize in creating modern user interfaces, developing custom WordPress solutions, and building eCommerce stores that enhance user experience and drive business growth.
+                AI &amp; Agentic AI Engineer and Frontend Developer focused on building
+                intelligent applications and modern digital experiences. Experienced in
+                LLM applications, RAG systems, AI agents, LangGraph, MCP, multimodal AI,
+                prompt engineering, structured outputs, and agentic workflow orchestration.
+                I also bring strong experience in React.js, JavaScript, Tailwind CSS,
+                WordPress, and WooCommerce, allowing me to build complete products from
+                intelligent AI backends to polished user interfaces.
               </p>
             </div>
 
@@ -295,12 +309,89 @@ const Resume = () => {
 
               {/* LEFT — Skills */}
               <div className="rv-card fade-up stagger-1" style={{ alignSelf: "start" }}>
-                <div className="rv-card__heading"><Award size={18} /> Technical Skills</div>
+                <div className="rv-card__heading">
+                  <Award size={18} /> Technical Skills
+                </div>
+
+                <div className="rv-skill-group">
+                  <h4>AI &amp; Agentic AI</h4>
+                  <div className="rv-pills">
+                    {[
+                      "Agentic AI",
+                      "AI Agents",
+                      "LLM Applications",
+                      "Prompt Engineering",
+                      "Structured Outputs",
+                      "Multimodal AI",
+                      "AI Workflows",
+                    ].map(s => (
+                      <span key={s} className="rv-pill">{s}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="rv-skill-group">
+                  <h4>RAG &amp; Knowledge Systems</h4>
+                  <div className="rv-pills">
+                    {[
+                      "RAG",
+                      "Embeddings",
+                      "Vector Search",
+                      "Document AI",
+                      "Knowledge Retrieval",
+                      "Context Grounding",
+                    ].map(s => (
+                      <span key={s} className="rv-pill">{s}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="rv-skill-group">
+                  <h4>Agent Orchestration</h4>
+                  <div className="rv-pills">
+                    {[
+                      "LangGraph",
+                      "MCP",
+                      "Multi-Agent Systems",
+                      "Tool Integration",
+                      "Workflow Orchestration",
+                      "Pydantic",
+                    ].map(s => (
+                      <span key={s} className="rv-pill">{s}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="rv-skill-group">
+                  <h4>AI &amp; Backend Technologies</h4>
+                  <div className="rv-pills">
+                    {[
+                      "Python",
+                      "FastAPI",
+                      "OpenAI",
+                      "Groq",
+                      "GPT-OSS 20B",
+                      "Moondream",
+                      "PostgreSQL",
+                      "SQLAlchemy",
+                    ].map(s => (
+                      <span key={s} className="rv-pill">{s}</span>
+                    ))}
+                  </div>
+                </div>
 
                 <div className="rv-skill-group">
                   <h4>Frontend Development</h4>
                   <div className="rv-pills">
-                    {["HTML5", "CSS3", "JavaScript", "React.js", "Tailwind CSS", "Bootstrap", "Responsive Design"].map(s => (
+                    {[
+                      "React.js",
+                      "JavaScript",
+                      "HTML5",
+                      "CSS3",
+                      "Tailwind CSS",
+                      "Bootstrap",
+                      "Responsive Design",
+                    ].map(s => (
                       <span key={s} className="rv-pill">{s}</span>
                     ))}
                   </div>
@@ -309,16 +400,33 @@ const Resume = () => {
                 <div className="rv-skill-group">
                   <h4>WordPress &amp; WooCommerce</h4>
                   <div className="rv-pills">
-                    {["WordPress", "WooCommerce", "Elementor Pro", "Theme Customization", "Plugin Integration", "Payment Gateway Setup", "Performance Optimization", "On-Page SEO"].map(s => (
+                    {[
+                      "WordPress",
+                      "WooCommerce",
+                      "Elementor Pro",
+                      "Theme Customization",
+                      "Plugin Integration",
+                      "Payment Gateway Setup",
+                      "SEO",
+                      "Performance Optimization",
+                    ].map(s => (
                       <span key={s} className="rv-pill">{s}</span>
                     ))}
                   </div>
                 </div>
 
                 <div className="rv-skill-group">
-                  <h4>Tools &amp; Technologies</h4>
+                  <h4>Tools</h4>
                   <div className="rv-pills">
-                    {["Git", "GitHub", "Figma", "Vite", "VS Code", "cPanel"].map(s => (
+                    {[
+                      "Git",
+                      "GitHub",
+                      "Figma",
+                      "Vite",
+                      "VS Code",
+                      "Streamlit",
+                      "cPanel",
+                    ].map(s => (
                       <span key={s} className="rv-pill">{s}</span>
                     ))}
                   </div>
@@ -330,6 +438,69 @@ const Resume = () => {
                 <div className="rv-card__heading"><Briefcase size={18} /> Professional Experience</div>
 
                 <div className="rv-timeline">
+
+                  <div className="rv-entry">
+                    <div className="rv-entry__header">
+                      <span className="rv-entry__title">
+                        AI &amp; Agentic AI Engineer Intern
+                      </span>
+
+                      <span className="rv-entry__badge">
+                        <Calendar size={11} /> July 2026 – Present
+                      </span>
+                    </div>
+
+                    <div className="rv-entry__org">
+                      TkXel
+                    </div>
+
+                    <ul className="rv-entry__list">
+                      <li>
+                        Developed AI-powered applications using LLMs, AI agents, RAG,
+                        prompt engineering, and agentic workflow patterns.
+                      </li>
+
+                      <li>
+                        Built an AI-powered LinkedIn Digital Twin using Python, FastAPI,
+                        OpenAI, PostgreSQL, SQLAlchemy, Pydantic, and Gradio.
+                      </li>
+
+                      <li>
+                        Implemented profile-grounded responses, session management,
+                        prompt-injection detection, rate limiting, caching, and secure
+                        IP hashing for the Digital Twin application.
+                      </li>
+
+                      <li>
+                        Developed an agentic AI Recipe Assistant using LangGraph,
+                        MCP, GPT-OSS 20B via Groq, and Moondream for multimodal
+                        recipe generation.
+                      </li>
+
+                      <li>
+                        Worked with document intelligence and retrieval workflows
+                        for AI-powered document processing and question answering.
+                      </li>
+                    </ul>
+
+                    <div className="rv-pills">
+                      {[
+                        "Agentic AI",
+                        "LLMs",
+                        "RAG",
+                        "LangGraph",
+                        "MCP",
+                        "Python",
+                        "FastAPI",
+                        "OpenAI",
+                        "Groq",
+                        "PostgreSQL",
+                        "Multimodal AI",
+                      ].map(t => (
+                        <span key={t} className="rv-pill">{t}</span>
+                      ))}
+                    </div>
+                  </div>
 
                   <div className="rv-entry">
                     <div className="rv-entry__header">

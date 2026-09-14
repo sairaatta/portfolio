@@ -176,18 +176,17 @@ const styles = `
   .section__cta { margin-top: 56px; text-align: center; }
 
   /* ═══ SKILL CARDS ═══ */
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
   .skill-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; padding: 32px 28px; backdrop-filter: blur(16px); transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; position: relative; overflow: hidden; }
-  .skill-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--blue-sky), var(--cyan), transparent); opacity: 0; transition: opacity 0.3s; }
-  .skill-card:hover { transform: translateY(-6px); border-color: var(--border-h); box-shadow: 0 20px 48px rgba(0,229,255,0.08); }
-  .skill-card:hover::before { opacity: 1; }
-  .skill-card__icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
-  .icon-blue { background: rgba(21,101,192,0.25); color: var(--blue-sky); }
-  .icon-cyan  { background: rgba(0,229,255,0.1);  color: var(--cyan); }
-  .skill-card h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 12px; color: var(--white); }
-  .skill-card p  { color: var(--muted); font-size: 0.88rem; line-height: 1.65; margin-bottom: 20px; font-weight: 300; }
-  .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient( 90deg, transparent, var(--blue-sky), var(--cyan), transparent ); opacity: 0; transition: opacity 0.3s; } 
+  .skill-card:hover { transform: translateY(-6px); border-color: var(--border-h); box-shadow: 0 20px 48px rgba(0,229,255,0.08); } 
+  .skill-card:hover::before { opacity: 1; } 
+  .skill-card__icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; } .icon-blue { background: rgba(21,101,192,0.25); color: var(--blue-sky); } 
+  .icon-cyan { background: rgba(0,229,255,0.1); color: var(--cyan); } .skill-card h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 12px; color: var(--white); } 
+  .skill-card p { color: var(--muted); font-size: 0.88rem; line-height: 1.65; margin-bottom: 20px; font-weight: 300; } 
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; } 
   .pill { padding: 4px 12px; background: rgba(33,150,243,0.1); border: 1px solid rgba(33,150,243,0.22); border-radius: 100px; font-size: 11.5px; color: var(--cyan-soft); font-weight: 500; letter-spacing: 0.02em; }
+
 
   .link-arrow { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--blue-sky), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: gap 0.2s; }
   .link-arrow:hover { gap: 13px; }
@@ -229,7 +228,7 @@ const styles = `
   ═══════════════════════════════ */
 
   /* Tablet: 481px – 768px */
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     .container { padding: 0 24px; }
     .hero__inner { padding: 0 20px; }
 
@@ -246,7 +245,7 @@ const styles = `
     .section__header { margin-bottom: 48px; }
     .section__title { font-size: clamp(1.6rem, 5vw, 2.2rem); }
 
-    .skills-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; } 
     .skill-card { padding: 24px 18px; }
 
     .projects-grid { grid-template-columns: 1fr; }
@@ -311,26 +310,26 @@ const styles = `
 
 /* ─── Bubble config ─── */
 const BUBBLE_CONFIG = [
-  { size: 8,  left: 5,  dur: 14, delay: 0,   drift: "12px",  v: "v1" },
-  { size: 14, left: 12, dur: 18, delay: 2,   drift: "-18px", v: "v2" },
-  { size: 6,  left: 20, dur: 12, delay: 4,   drift: "8px",   v: "v3" },
-  { size: 20, left: 28, dur: 22, delay: 1,   drift: "-22px", v: "v1" },
-  { size: 10, left: 35, dur: 16, delay: 6,   drift: "14px",  v: "v4" },
-  { size: 5,  left: 42, dur: 11, delay: 3,   drift: "-10px", v: "v2" },
-  { size: 16, left: 50, dur: 20, delay: 8,   drift: "20px",  v: "v3" },
-  { size: 9,  left: 58, dur: 15, delay: 0.5, drift: "-14px", v: "v1" },
-  { size: 24, left: 65, dur: 25, delay: 5,   drift: "18px",  v: "v4" },
-  { size: 7,  left: 72, dur: 13, delay: 2.5, drift: "-8px",  v: "v2" },
-  { size: 12, left: 80, dur: 17, delay: 7,   drift: "16px",  v: "v3" },
+  { size: 8, left: 5, dur: 14, delay: 0, drift: "12px", v: "v1" },
+  { size: 14, left: 12, dur: 18, delay: 2, drift: "-18px", v: "v2" },
+  { size: 6, left: 20, dur: 12, delay: 4, drift: "8px", v: "v3" },
+  { size: 20, left: 28, dur: 22, delay: 1, drift: "-22px", v: "v1" },
+  { size: 10, left: 35, dur: 16, delay: 6, drift: "14px", v: "v4" },
+  { size: 5, left: 42, dur: 11, delay: 3, drift: "-10px", v: "v2" },
+  { size: 16, left: 50, dur: 20, delay: 8, drift: "20px", v: "v3" },
+  { size: 9, left: 58, dur: 15, delay: 0.5, drift: "-14px", v: "v1" },
+  { size: 24, left: 65, dur: 25, delay: 5, drift: "18px", v: "v4" },
+  { size: 7, left: 72, dur: 13, delay: 2.5, drift: "-8px", v: "v2" },
+  { size: 12, left: 80, dur: 17, delay: 7, drift: "16px", v: "v3" },
   { size: 18, left: 88, dur: 21, delay: 1.5, drift: "-20px", v: "v1" },
-  { size: 6,  left: 93, dur: 10, delay: 9,   drift: "10px",  v: "v4" },
+  { size: 6, left: 93, dur: 10, delay: 9, drift: "10px", v: "v4" },
   { size: 11, left: 96, dur: 19, delay: 3.5, drift: "-12px", v: "v2" },
-  { size: 15, left: 8,  dur: 23, delay: 11,  drift: "-16px", v: "v3" },
-  { size: 8,  left: 17, dur: 14, delay: 13,  drift: "10px",  v: "v4" },
-  { size: 22, left: 32, dur: 26, delay: 10,  drift: "24px",  v: "v1" },
-  { size: 6,  left: 47, dur: 12, delay: 14,  drift: "-8px",  v: "v2" },
-  { size: 13, left: 63, dur: 18, delay: 12,  drift: "14px",  v: "v3" },
-  { size: 19, left: 78, dur: 24, delay: 15,  drift: "-22px", v: "v4" },
+  { size: 15, left: 8, dur: 23, delay: 11, drift: "-16px", v: "v3" },
+  { size: 8, left: 17, dur: 14, delay: 13, drift: "10px", v: "v4" },
+  { size: 22, left: 32, dur: 26, delay: 10, drift: "24px", v: "v1" },
+  { size: 6, left: 47, dur: 12, delay: 14, drift: "-8px", v: "v2" },
+  { size: 13, left: 63, dur: 18, delay: 12, drift: "14px", v: "v3" },
+  { size: 19, left: 78, dur: 24, delay: 15, drift: "-22px", v: "v4" },
 ];
 
 function Bubbles() {
@@ -385,17 +384,25 @@ const Home = () => {
 
             <div className="badge fade-up visible">
               <span className="badge-dot" />
-              Frontend &amp; eCommerce WordPress Developer
+              AI &amp; Agentic AI Engineer · Frontend Developer
             </div>
 
             <h1 className="hero__title fade-up visible" style={{ transitionDelay: "0.1s" }}>
-              <span className="line-1">Designing &amp;</span>
-              <span className="line-2">Developing Beautiful</span>
-              <span className="line-3">User Interfaces</span>
+              <span className="line-1">Building &amp;</span>
+              <span className="line-2">Intelligent Digital</span>
+              <span className="line-3">Experiences</span>
             </h1>
 
             <p className="hero__subtitle fade-up visible" style={{ transitionDelay: "0.2s" }}>
-              I'm a passionate <span className="hl-blue">Frontend &amp; WordPress Developer</span> specializing in responsive, user-friendly websites and eCommerce platforms. I craft modern interfaces with <span className="hl-cyan">HTML, CSS, JavaScript</span>, and <span className="hl-cyan">React.js</span>, and build scalable WordPress solutions including <span className="hl-blue">WooCommerce</span> stores, custom themes, and performance-optimized experiences. Every pixel is intentional.
+              I'm an <span className="hl-blue">AI &amp; Agentic AI Engineer</span> and
+              <span className="hl-blue"> Frontend Developer</span> focused on building
+              intelligent, production-ready applications. I work with
+              <span className="hl-cyan"> LLMs, RAG, AI Agents, LangGraph, MCP</span>,
+              multimodal AI, and structured AI workflows, while also creating modern
+              interfaces with <span className="hl-cyan">React.js</span> and
+              <span className="hl-cyan"> Tailwind CSS</span>. I combine AI engineering
+              with strong frontend development to build scalable, responsive, and
+              user-focused digital products.
             </p>
 
             <div className="hero__btns fade-up visible" style={{ transitionDelay: "0.3s" }}>
@@ -422,14 +429,91 @@ const Home = () => {
             <div className="section__header fade-up">
               <span className="section__eyebrow">What I do</span>
               <h2 className="section__title">My <span className="accent">Technical Expertise</span></h2>
-              <p className="section__desc">I build high-performance websites and eCommerce platforms, transforming modern UI designs into scalable, responsive digital experiences.</p>
+              <p className="section__desc">
+                I build intelligent AI systems and modern web applications, combining
+                Agentic AI, LLMs, RAG, multimodal workflows, and frontend engineering
+                to create scalable and user-focused digital experiences.
+              </p>
             </div>
 
             <div className="skills-grid">
               <div className="skill-card fade-up stagger-1">
-                <div className="skill-card__icon icon-blue"><Monitor size={22} /></div>
+                <div className="skill-card__icon icon-cyan">
+                  <Sparkles size={22} />
+                </div>
+
+                <h3>AI &amp; Agentic AI Engineering</h3>
+
+                <p>
+                  Building intelligent AI applications using LLMs, RAG pipelines,
+                  AI agents, tool-based workflows, multimodal AI, and agent orchestration.
+                </p>
+
+                <div className="pills">
+                  <span className="pill">LLMs</span>
+                  <span className="pill">RAG</span>
+                  <span className="pill">AI Agents</span>
+                  <span className="pill">LangGraph</span>
+                  <span className="pill">MCP</span>
+                  <span className="pill">Multimodal AI</span>
+                </div>
+              </div>
+
+              <div className="skill-card fade-up stagger-3">
+                <div className="skill-card__icon icon-blue">
+                  <Layers size={22} />
+                </div>
+
+                <h3>LLM &amp; RAG Applications</h3>
+
+                <p>
+                  Developing grounded AI applications with retrieval-augmented generation,
+                  document processing, context management, structured outputs, and
+                  hallucination-aware workflows.
+                </p>
+
+                <div className="pills">
+                  <span className="pill">RAG</span>
+                  <span className="pill">LLM Applications</span>
+                  <span className="pill">Embeddings</span>
+                  <span className="pill">Vector Search</span>
+                  <span className="pill">Prompt Engineering</span>
+                </div>
+              </div>
+
+              <div className="skill-card fade-up stagger-4">
+                <div className="skill-card__icon icon-cyan">
+                  <Code2 size={22} />
+                </div>
+
+                <h3>Agentic Workflows</h3>
+
+                <p>
+                  Designing multi-step AI workflows with orchestration, specialized agents,
+                  decision routing, external tools, MCP integrations, and structured
+                  agent execution.
+                </p>
+
+                <div className="pills">
+                  <span className="pill">LangGraph</span>
+                  <span className="pill">MCP</span>
+                  <span className="pill">Multi-Agent Systems</span>
+                  <span className="pill">Tool Integration</span>
+                </div>
+              </div>
+
+              <div className="skill-card fade-up stagger-2">
+                <div className="skill-card__icon icon-blue">
+                  <Monitor size={22} />
+                </div>
+
                 <h3>Frontend Development</h3>
-                <p>Building modern, interactive user interfaces using React.js and scalable frontend architectures.</p>
+
+                <p>
+                  Building modern, responsive interfaces for AI-powered and
+                  full-stack applications using scalable frontend architectures.
+                </p>
+
                 <div className="pills">
                   <span className="pill">React.js</span>
                   <span className="pill">JavaScript ES6+</span>
@@ -462,17 +546,7 @@ const Home = () => {
                 </div>
               </div>
 
-              <div className="skill-card fade-up stagger-4">
-                <div className="skill-card__icon icon-cyan"><Code2 size={22} /></div>
-                <h3>Figma to Website</h3>
-                <p>Converting Figma designs into pixel-perfect, fully responsive websites with clean code.</p>
-                <div className="pills">
-                  <span className="pill">Pixel Perfect</span>
-                  <span className="pill">Cross-Browser</span>
-                  <span className="pill">Mobile First</span>
-                  <span className="pill">SEO Friendly</span>
-                </div>
-              </div>
+
             </div>
 
             <div className="section__cta fade-up">
@@ -536,8 +610,12 @@ const Home = () => {
         <section className="cta-section">
           <div className="cta-card fade-up">
             <Sparkles size={32} style={{ color: "var(--cyan)", margin: "0 auto 20px", display: "block" }} />
-            <h2>Ready to Start Your Project?</h2>
-            <p>Let's build something modern, fast, and high-performing together.</p>
+            <h2>Let's Build Something Intelligent.</h2>
+
+            <p>
+              From AI agents and LLM-powered applications to modern web experiences,
+              let's build something intelligent, scalable, and impactful together.
+            </p>
             <Link to="/contact" className="btn-primary" style={{ textDecoration: "none" }}>
               Get in Touch <ArrowRight size={17} />
             </Link>
